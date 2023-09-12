@@ -1,11 +1,15 @@
 /** @type {import('tailwindcss').Config} */
-export default {
-  content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
-  ],
+module.exports =  {
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        bodyfont: ["Poppins", "sans-serif"],
+        titlefont: ["Monsterrat", "sans-serif"],
+      },
+    },
   },
-  plugins: [],
-}
+  plugins: [
+    require('tailwind-scrollbar'),
+  ],
+};

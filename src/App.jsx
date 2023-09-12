@@ -1,14 +1,17 @@
 import { useState } from 'react'
 import './App.css'
-import Navbar from './components/customers/Navbar'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import Homepage from './pages/Homepage'
 
-function App() {
+const App = ()=> {
   const [count, setCount] = useState(0)
 
   return (
-    <>
-      <Navbar headline="Get free delivery on orders over $100"/>
-    </>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Homepage />} />
+      </Routes>
+    </Router>
   )
 }
 

@@ -1,11 +1,21 @@
 /** @type {import('tailwindcss').Config} */
-export default {
-  content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
-  ],
+// eslint-disable-next-line no-undef
+module.exports =  {
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        bodyfont: ["Poppins", "sans-serif"],
+        titlefont: ["Monsterrat", "sans-serif"],
+      },
+      container:{
+        center: true,
+        padding: "150px",
+      }
+    },
   },
-  plugins: [],
-}
+  plugins: [
+    // eslint-disable-next-line no-undef
+    require('tailwind-scrollbar'),
+  ],
+};

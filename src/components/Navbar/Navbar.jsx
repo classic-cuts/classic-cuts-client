@@ -6,6 +6,8 @@ import {
   ShoppingBagIcon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
+import { Link } from "react-router-dom";
+import { Tooltip } from "react-tooltip";
 
 const navigation = {
   categories: [
@@ -15,7 +17,7 @@ const navigation = {
       featured: [
         {
           name: "New Arrivals",
-          href: "#",
+          to: "#",
           imageSrc:
             "https://tailwindui.com/img/ecommerce-images/mega-menu-category-01.jpg",
           imageAlt:
@@ -23,7 +25,7 @@ const navigation = {
         },
         {
           name: "Basic Tees",
-          href: "#",
+          to: "#",
           imageSrc:
             "https://tailwindui.com/img/ecommerce-images/mega-menu-category-02.jpg",
           imageAlt:
@@ -35,38 +37,38 @@ const navigation = {
           id: "clothing",
           name: "Clothing",
           items: [
-            { name: "Tops", href: "#" },
-            { name: "Dresses", href: "#" },
-            { name: "Pants", href: "#" },
-            { name: "Denim", href: "#" },
-            { name: "Sweaters", href: "#" },
-            { name: "T-Shirts", href: "#" },
-            { name: "Jackets", href: "#" },
-            { name: "Activewear", href: "#" },
-            { name: "Browse All", href: "#" },
+            { name: "Tops", to: "#" },
+            { name: "Dresses", to: "#" },
+            { name: "Pants", to: "#" },
+            { name: "Denim", to: "#" },
+            { name: "Sweaters", to: "#" },
+            { name: "T-Shirts", to: "#" },
+            { name: "Jackets", to: "#" },
+            { name: "Activewear", to: "#" },
+            { name: "Browse All", to: "#" },
           ],
         },
         {
           id: "accessories",
           name: "Accessories",
           items: [
-            { name: "Watches", href: "#" },
-            { name: "Wallets", href: "#" },
-            { name: "Bags", href: "#" },
-            { name: "Sunglasses", href: "#" },
-            { name: "Hats", href: "#" },
-            { name: "Belts", href: "#" },
+            { name: "Watches", to: "#" },
+            { name: "Wallets", to: "#" },
+            { name: "Bags", to: "#" },
+            { name: "Sunglasses", to: "#" },
+            { name: "Hats", to: "#" },
+            { name: "Belts", to: "#" },
           ],
         },
         {
           id: "brands",
           name: "Brands",
           items: [
-            { name: "Full Nelson", href: "#" },
-            { name: "My Way", href: "#" },
-            { name: "Re-Arranged", href: "#" },
-            { name: "Counterfeit", href: "#" },
-            { name: "Significant Other", href: "#" },
+            { name: "Full Nelson", to: "#" },
+            { name: "My Way", to: "#" },
+            { name: "Re-Arranged", to: "#" },
+            { name: "Counterfeit", to: "#" },
+            { name: "Significant Other", to: "#" },
           ],
         },
       ],
@@ -77,7 +79,7 @@ const navigation = {
       featured: [
         {
           name: "New Arrivals",
-          href: "#",
+          to: "#",
           imageSrc:
             "https://tailwindui.com/img/ecommerce-images/product-page-04-detail-product-shot-01.jpg",
           imageAlt:
@@ -85,7 +87,7 @@ const navigation = {
         },
         {
           name: "Artwork Tees",
-          href: "#",
+          to: "#",
           imageSrc:
             "https://tailwindui.com/img/ecommerce-images/category-page-02-image-card-06.jpg",
           imageAlt:
@@ -97,43 +99,43 @@ const navigation = {
           id: "clothing",
           name: "Clothing",
           items: [
-            { name: "Tops", href: "#" },
-            { name: "Pants", href: "#" },
-            { name: "Sweaters", href: "#" },
-            { name: "T-Shirts", href: "#" },
-            { name: "Jackets", href: "#" },
-            { name: "Activewear", href: "#" },
-            { name: "Browse All", href: "#" },
+            { name: "Tops", to: "#" },
+            { name: "Pants", to: "#" },
+            { name: "Sweaters", to: "#" },
+            { name: "T-Shirts", to: "#" },
+            { name: "Jackets", to: "#" },
+            { name: "Activewear", to: "#" },
+            { name: "Browse All", to: "#" },
           ],
         },
         {
           id: "accessories",
           name: "Accessories",
           items: [
-            { name: "Watches", href: "#" },
-            { name: "Wallets", href: "#" },
-            { name: "Bags", href: "#" },
-            { name: "Sunglasses", href: "#" },
-            { name: "Hats", href: "#" },
-            { name: "Belts", href: "#" },
+            { name: "Watches", to: "#" },
+            { name: "Wallets", to: "#" },
+            { name: "Bags", to: "#" },
+            { name: "Sunglasses", to: "#" },
+            { name: "Hats", to: "#" },
+            { name: "Belts", to: "#" },
           ],
         },
         {
           id: "brands",
           name: "Brands",
           items: [
-            { name: "Re-Arranged", href: "#" },
-            { name: "Counterfeit", href: "#" },
-            { name: "Full Nelson", href: "#" },
-            { name: "My Way", href: "#" },
+            { name: "Re-Arranged", to: "#" },
+            { name: "Counterfeit", to: "#" },
+            { name: "Full Nelson", to: "#" },
+            { name: "My Way", to: "#" },
           ],
         },
       ],
     },
   ],
   pages: [
-    { name: "Company", href: "#" },
-    { name: "Stores", href: "#" },
+    { name: "Company", to: "#" },
+    { name: "Stores", to: "#" },
   ],
 };
 
@@ -224,8 +226,8 @@ export default function Navbar(props) {
                                   className="object-cover object-center"
                                 />
                               </div>
-                              <a
-                                href={item.href}
+                              <Link
+                                to={item.to}
                                 className="mt-6 block font-medium text-gray-900"
                               >
                                 <span
@@ -233,7 +235,7 @@ export default function Navbar(props) {
                                   aria-hidden="true"
                                 />
                                 {item.name}
-                              </a>
+                              </Link>
                               <p aria-hidden="true" className="mt-1">
                                 Shop now
                               </p>
@@ -255,12 +257,12 @@ export default function Navbar(props) {
                             >
                               {section.items.map((item) => (
                                 <li key={item.name} className="flow-root">
-                                  <a
-                                    href={item.href}
+                                  <Link
+                                    to={item.to}
                                     className="-m-2 block p-2 text-gray-500"
                                   >
                                     {item.name}
-                                  </a>
+                                  </Link>
                                 </li>
                               ))}
                             </ul>
@@ -274,37 +276,37 @@ export default function Navbar(props) {
                 <div className="space-y-6 border-t border-gray-200 px-4 py-6">
                   {navigation.pages.map((page) => (
                     <div key={page.name} className="flow-root">
-                      <a
-                        href={page.href}
+                      <Link
+                        to={page.to}
                         className="-m-2 block p-2 font-medium text-gray-900"
                       >
                         {page.name}
-                      </a>
+                      </Link>
                     </div>
                   ))}
                 </div>
 
                 <div className="space-y-6 border-t border-gray-200 px-4 py-6">
                   <div className="flow-root">
-                    <a
-                      href="#"
+                    <Link
+                      to="#"
                       className="-m-2 block p-2 font-medium text-gray-900"
                     >
                       Sign in
-                    </a>
+                    </Link>
                   </div>
                   <div className="flow-root">
-                    <a
-                      href="#"
+                    <Link
+                      to="#"
                       className="-m-2 block p-2 font-medium text-gray-900"
                     >
                       Create account
-                    </a>
+                    </Link>
                   </div>
                 </div>
 
                 <div className="border-t border-gray-200 px-4 py-6">
-                  <a href="#" className="-m-2 flex items-center p-2">
+                  <Link to="#" className="-m-2 flex items-center p-2">
                     <img
                       src="https://tailwindui.com/img/flags/flag-canada.svg"
                       alt=""
@@ -314,7 +316,7 @@ export default function Navbar(props) {
                       CAD
                     </span>
                     <span className="sr-only">, change currency</span>
-                  </a>
+                  </Link>
                 </div>
               </Dialog.Panel>
             </Transition.Child>
@@ -322,8 +324,13 @@ export default function Navbar(props) {
         </Dialog>
       </Transition.Root>
 
-      <header className="relative bg-white">
-        <p className="flex h-10 items-center justify-center bg-indigo-600 px-4 text-sm font-medium text-white sm:px-6 lg:px-8">
+      <header className="bg-white">
+        <p
+          className={classNames(
+            "flex h-10 items-center justify-center bg-indigo-600 px-4 text-sm font-medium text-white sm:px-6 lg:px-8",
+            props.headline ? " " : "hidden"
+          )}
+        >
           {props.headline}
         </p>
 
@@ -345,18 +352,13 @@ export default function Navbar(props) {
 
               {/* Logo */}
               <div className="ml-4 flex lg:ml-0">
-                <a href="#">
-                  <span className="sr-only">Your Company</span>
-                  <img
-                    className="h-8 w-auto"
-                    src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                    alt=""
-                  />
-                </a>
+                <Link to="#">
+                  <img className="h-10 w-auto" src="/logo.png" alt="" />
+                </Link>
               </div>
 
               {/* Flyout menus */}
-              <Popover.Group className="hidden lg:ml-8 lg:block lg:self-stretch">
+              <Popover.Group className="hidden lg:ml-8 lg:block lg:self-stretch z-10">
                 <div className="flex h-full space-x-8">
                   {navigation.categories.map((category) => (
                     <Popover key={category.name} className="flex">
@@ -407,8 +409,8 @@ export default function Navbar(props) {
                                               className="object-cover object-center"
                                             />
                                           </div>
-                                          <a
-                                            href={item.href}
+                                          <Link
+                                            to={item.to}
                                             className="mt-6 block font-medium text-gray-900"
                                           >
                                             <span
@@ -416,7 +418,7 @@ export default function Navbar(props) {
                                               aria-hidden="true"
                                             />
                                             {item.name}
-                                          </a>
+                                          </Link>
                                           <p
                                             aria-hidden="true"
                                             className="mt-1"
@@ -445,12 +447,12 @@ export default function Navbar(props) {
                                                 key={item.name}
                                                 className="flex"
                                               >
-                                                <a
-                                                  href={item.href}
+                                                <Link
+                                                  to={item.to}
                                                   className="hover:text-gray-800"
                                                 >
                                                   {item.name}
-                                                </a>
+                                                </Link>
                                               </li>
                                             ))}
                                           </ul>
@@ -466,65 +468,62 @@ export default function Navbar(props) {
                       )}
                     </Popover>
                   ))}
-
+                  {/* 
                   {navigation.pages.map((page) => (
-                    <a
+                    <Link
                       key={page.name}
-                      href={page.href}
+                      to={page.to}
                       className="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800"
                     >
                       {page.name}
-                    </a>
-                  ))}
+                    </Link>
+                  ))} */}
                 </div>
               </Popover.Group>
 
-              <div className="ml-auto flex items-center">
-                <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
-                  <a
-                    href="#"
+              {/* Search */}
+              <div className="flex block w-1/2 rounded-md border border-zinc-500 bg-white py-2 font-satoshi pl-5 pr-12 ml-20 text-sm shadow-lg font-medium focus:border-black focus:outline-none focus:ring-0">
+                <div className="w-full border-transparent">
+                  <input
+                    type="text"
+                    className="h-8 w-full border-0 focus:outline-none text-[18px]"
+                    placeholder="Search client cuts"
+                  />
+                </div>
+                <div className="bg-yellow">
+                  <MagnifyingGlassIcon
+                    className="h-8 w-auto"
+                    aria-hidden="true"
+                  />
+                </div>
+              </div>
+
+              <div className="ml-auto flex items-center justify-center">
+                <div className="hidden lg:flex lg:flex-1 mr-3 lg:items-center lg:justify-end lg:space-x-6">
+                  <Link
+                    to="#"
                     className="text-sm font-medium text-gray-700 hover:text-gray-800"
                   >
                     Sign in
-                  </a>
-                  <span className="h-6 w-px bg-gray-200" aria-hidden="true" />
-                  <a
-                    href="#"
+                  </Link>
+                  {/* <span className="h-6 w-px bg-gray-200" aria-hidden="true" /> */}
+                </div>
+
+                <div>
+                  <Link
+                    to="#"
                     className="text-sm font-medium text-gray-700 hover:text-gray-800"
                   >
-                    Create account
-                  </a>
-                </div>
-
-                <div className="hidden lg:ml-8 lg:flex">
-                  <a
-                    href="#"
-                    className="flex items-center text-gray-700 hover:text-gray-800"
-                  >
-                    <img
-                      src="https://tailwindui.com/img/flags/flag-canada.svg"
-                      alt=""
-                      className="block h-auto w-5 flex-shrink-0"
-                    />
-                    <span className="ml-3 block text-sm font-medium">CAD</span>
-                    <span className="sr-only">, change currency</span>
-                  </a>
-                </div>
-
-                {/* Search */}
-                <div className="flex lg:ml-6">
-                  <a href="#" className="p-2 text-gray-400 hover:text-gray-500">
-                    <span className="sr-only">Search</span>
-                    <MagnifyingGlassIcon
-                      className="h-6 w-6"
-                      aria-hidden="true"
-                    />
-                  </a>
+                    Become a seller
+                  </Link>
                 </div>
 
                 {/* Cart */}
                 <div className="ml-4 flow-root lg:ml-6">
-                  <a href="#" className="group -m-2 flex items-center p-2">
+                  <Link
+                    to="#"
+                    className="group -m-2 flex items-center p-2 shoppingTooltip"
+                  >
                     <ShoppingBagIcon
                       className="h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
                       aria-hidden="true"
@@ -532,8 +531,23 @@ export default function Navbar(props) {
                     <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">
                       0
                     </span>
+                    <Tooltip
+                      anchorSelect=".shoppingTooltip"
+                      data-tooltip-variant="success"
+                      place="top"
+                      style={{
+                        backgroundColor: "#454545",
+                        color: "white",
+                        fontWeight: "500",
+                        padding: "7px",
+                        marginTop: "7px",
+                        borderRadius: "10px",
+                      }}
+                    >
+                      Cart
+                    </Tooltip>
                     <span className="sr-only">items in cart, view bag</span>
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>

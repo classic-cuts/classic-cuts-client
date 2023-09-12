@@ -1,16 +1,17 @@
-import Navbar from './components/customers/Navbar'
-import '../styles/global.css'
-import Footer from './components/Footer'
+import { useState } from 'react'
+import './App.css'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import Homepage from './pages/Homepage'
 
-function App() {
+const App = ()=> {
+  const [count, setCount] = useState(0)
 
   return (
-    <body>
-      <Navbar headline="Get free delivery on orders over $100"/>
-      <Footer/>
-      
-    </body>
-    
+    <Router>
+      <Routes>
+        <Route path="/" element={<Homepage />} />
+      </Routes>
+    </Router>
   )
 }
 

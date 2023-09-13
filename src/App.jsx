@@ -10,6 +10,7 @@ const App = ()=> {
     <Router>
       <Routes>
         <Route path="/" element={<Homepage />} />
+        <Route path="/login" element={<Homepage />} />
       </Routes>
     </Router>
     <Footer/>

@@ -7,7 +7,6 @@ import {
   XMarkIcon,
 } from "@heroicons/react/24/outline";
 import { Link } from "react-router-dom";
-import { Tooltip } from "react-tooltip";
 
 const navigation = {
   categories: [
@@ -300,23 +299,9 @@ export default function Navbar(props) {
                       to="#"
                       className="-m-2 block p-2 font-medium text-gray-900"
                     >
-                      Create account
+                      Become a seller
                     </Link>
                   </div>
-                </div>
-
-                <div className="border-t border-gray-200 px-4 py-6">
-                  <Link to="#" className="-m-2 flex items-center p-2">
-                    <img
-                      src="https://tailwindui.com/img/flags/flag-canada.svg"
-                      alt=""
-                      className="block h-auto w-5 flex-shrink-0"
-                    />
-                    <span className="ml-3 block text-base font-medium text-gray-900">
-                      CAD
-                    </span>
-                    <span className="sr-only">, change currency</span>
-                  </Link>
                 </div>
               </Dialog.Panel>
             </Transition.Child>
@@ -324,13 +309,8 @@ export default function Navbar(props) {
         </Dialog>
       </Transition.Root>
 
-      <header className="bg-white">
-        <p
-          className={classNames(
-            "flex h-10 items-center justify-center bg-indigo-600 px-4 text-sm font-medium text-white sm:px-6 lg:px-8",
-            props.headline ? " " : "hidden"
-          )}
-        >
+      <header className="relative bg-white">
+        <p className="flex h-10 items-center justify-center bg-indigo-600 px-4 text-sm font-medium text-white sm:px-6 lg:px-8">
           {props.headline}
         </p>
 
@@ -353,7 +333,7 @@ export default function Navbar(props) {
               {/* Logo */}
               <div className="ml-4 flex lg:ml-0">
                 <Link to="#">
-                  <img className="h-10 w-auto" src="/logo.png" alt="" />
+                  <img className="h-8 w-auto" src="/logo.png" alt="" />
                 </Link>
               </div>
 
@@ -468,26 +448,16 @@ export default function Navbar(props) {
                       )}
                     </Popover>
                   ))}
-                  {/* 
-                  {navigation.pages.map((page) => (
-                    <Link
-                      key={page.name}
-                      to={page.to}
-                      className="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800"
-                    >
-                      {page.name}
-                    </Link>
-                  ))} */}
                 </div>
               </Popover.Group>
 
               {/* Search */}
-              <div className="flex block w-1/2 rounded-md border border-zinc-500 bg-white py-2 font-satoshi pl-5 pr-12 ml-20 text-sm shadow-lg font-medium focus:border-black focus:outline-none focus:ring-0">
+              <div className="flex w-1/2 rounded-md border border-zinc-500 bg-white py-2 font-satoshi pl-5 pr-12 ml-20 text-sm shadow-lg font-medium focus:border-black focus:outline-none focus:ring-0">
                 <div className="w-full border-transparent">
                   <input
                     type="text"
                     className="h-8 w-full border-0 focus:outline-none text-[18px]"
-                    placeholder="Search client cuts"
+                    placeholder="Search classic cuts"
                   />
                 </div>
                 <div className="bg-yellow">
@@ -497,19 +467,15 @@ export default function Navbar(props) {
                   />
                 </div>
               </div>
-
-              <div className="ml-auto flex items-center justify-center">
-                <div className="hidden lg:flex lg:flex-1 mr-3 lg:items-center lg:justify-end lg:space-x-6">
+              <div className="ml-auto flex items-center">
+                <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
                   <Link
                     to="#"
                     className="text-sm font-medium text-gray-700 hover:text-gray-800"
                   >
                     Sign in
                   </Link>
-                  {/* <span className="h-6 w-px bg-gray-200" aria-hidden="true" /> */}
-                </div>
-
-                <div>
+                  <span className="h-6 w-px bg-gray-200" aria-hidden="true" />
                   <Link
                     to="#"
                     className="text-sm font-medium text-gray-700 hover:text-gray-800"
@@ -520,32 +486,28 @@ export default function Navbar(props) {
 
                 {/* Cart */}
                 <div className="ml-4 flow-root lg:ml-6">
-                  <Link
-                    to="#"
-                    className="group -m-2 flex items-center p-2 shoppingTooltip"
-                  >
-                    <ShoppingBagIcon
-                      className="h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
-                      aria-hidden="true"
-                    />
-                    <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">
-                      0
-                    </span>
-                    <Tooltip
-                      anchorSelect=".shoppingTooltip"
-                      data-tooltip-variant="success"
-                      place="top"
-                      style={{
-                        backgroundColor: "#454545",
-                        color: "white",
-                        fontWeight: "500",
-                        padding: "7px",
-                        marginTop: "7px",
-                        borderRadius: "10px",
-                      }}
-                    >
-                      Cart
-                    </Tooltip>
+                  <Link to="#" className="group -m-2 flex items-center p-2">
+                    <div class="relative py-2">
+                      <div class="t-0 absolute left-3">
+                        <p class="flex h-2 w-2 items-center justify-center rounded-full bg-red-500 p-3 text-xs text-white">
+                          0
+                        </p>
+                      </div>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke-width="1.5"
+                        stroke="currentColor"
+                        class="file: mt-4 h-6 w-6"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"
+                        />
+                      </svg>
+                    </div>
                     <span className="sr-only">items in cart, view bag</span>
                   </Link>
                 </div>

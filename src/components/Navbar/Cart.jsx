@@ -1,13 +1,12 @@
-import React from "react";
 import { Link } from "react-router-dom";
 
 const Cart = () => {
   return (
     <div className="ml-4 flow-root lg:ml-6">
       <Link to="#" className="group -m-2 flex items-center p-2">
-        <div class="relative py-2">
-          <div class="t-0 absolute left-3">
-            <p class="flex h-2 w-2 items-center justify-center rounded-full bg-red-500 p-3 text-xs text-white">
+        <div className="relative py-2">
+          <div className="t-0 absolute left-3">
+            <p className="flex h-2 w-2 items-center justify-center rounded-full bg-red-500 p-3 text-xs text-white">
               0
             </p>
           </div>
@@ -17,7 +16,7 @@ const Cart = () => {
             viewBox="0 0 24 24"
             stroke-width="1.5"
             stroke="currentColor"
-            class="file: mt-4 h-6 w-6"
+            className="file: mt-4 h-6 w-6"
           >
             <path
               stroke-linecap="round"

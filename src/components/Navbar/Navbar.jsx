@@ -6,8 +6,8 @@ import {
   XMarkIcon,
 } from "@heroicons/react/24/outline";
 import { Link } from "react-router-dom";
-import Signincomponent from "./Signincomponent";
 import Cart from "./Cart";
+import SignInComponent from "./Signincomponent";
 
 const navigation = {
   categories: [
@@ -470,7 +470,7 @@ export default function Navbar(props) {
               </div>
               <div className="ml-auto flex items-center">
                 {/* signin button */}
-                <Signincomponent />
+                <SignInComponent />
                 {/* Cart */}
                 <Cart />
               </div>

@@ -2,11 +2,6 @@
 import React from "react";
 
 const Footer = () => {
-  //     const copyrightFooter = `
-  //  <p>
-  //   Copyright © ${new Date().getFullYear()} ClassicCuts
-  //  </p>
-  // `;
 
   return (
     <div className="mt-[100px] mb-5 mx-[200px]">

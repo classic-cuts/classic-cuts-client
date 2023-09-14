@@ -18,7 +18,7 @@ const style = {
   p: 4,
 };
 
-const Authform = ({ handleClose, open }) => {
+const AuthForm = ({ handleClose, open }) => {
   const location = useLocation();
 
   return (
@@ -37,4 +37,4 @@ const Authform = ({ handleClose, open }) => {
   );
 };
 
-export default Authform;
+export default AuthForm;

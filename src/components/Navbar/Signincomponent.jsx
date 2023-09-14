@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-import Signin from "../customers/auth/Signin";
-import Authform from "../customers/auth/Authform";
+import AuthForm from "../customers/auth/Authform";
 // import Signup from "../customers/auth/Signup";
 
-const Signincomponent = () => {
+const SignInComponent = () => {
   const [openAuthModal, setOpenAuthModel] = useState(false);
 
   const handleClose = () => {
@@ -27,9 +26,9 @@ const Signincomponent = () => {
       </button>
 
       {/* //modal for signup and login */}
-      <Authform handleClose={handleClose} open={openAuthModal} />
+      <AuthForm handleClose={handleClose} open={openAuthModal} />
     </div>
   );
 };
 
-export default Signincomponent;
+export default SignInComponent;

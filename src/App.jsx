@@ -2,8 +2,7 @@ import { useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import Homepage from "./pages/Homepage";
 import Footer from "./components/footer/Footer";
-import ProductsList from "./components/products-list/ProductsList";
-import { FrequentBuys } from "./components/products-list/FrequentBuys";
+import ProductPage from "./components/products/Products";
 
 const ScrollToTop = () => {
   const {pathname} = useLocation();
@@ -21,10 +20,10 @@ const App = () => {
         <ScrollToTop/>
         <Routes>
           <Route path="/" element={<Homepage />} />
+          <Route path="/product/:id" element={<ProductPage/>} />
         </Routes>
       </Router>
-      <ProductsList/>
-      <FrequentBuys/>
+      
       <Footer />
     </div>
   );

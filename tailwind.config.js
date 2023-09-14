@@ -13,6 +13,9 @@ module.exports =  {
         'custom': '0 4px 9px -4px #3b71ca',
         'custom2': '0 8px 9px -4px rgba(59, 113, 202, 0.3), 0 4px 18px 0 rgba(59, 113, 202, 0.2)',
       },
+      gridTemplateRows: {
+        '[auto,auto,1fr]': 'auto auto 1fr',
+      },
       colors: {
         // eslint-disable-next-line no-undef
         primary: colors.blue,

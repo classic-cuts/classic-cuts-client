@@ -6,14 +6,14 @@ import { mainCarouselData } from "../../assets/MaincarouselData/MaincarouselData
 const items = mainCarouselData.map((item) => (
   <img className="cursor-pointer" role="presentation" src={item.image} alt="" />
 ));
-const Maincarousel = () => (
+const MainCarousel = () => (
   <AliceCarousel
     items={items}
     disableButtonsControls
     autoPlay
-    autoPlayInterval={1000}
+    autoPlayInterval={1500}
     infinite
   />
 );
 
-export default Maincarousel;
+export default MainCarousel;

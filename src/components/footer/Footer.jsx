@@ -1,14 +1,14 @@
 // eslint-disable-next-line no-unused-vars
 
-import React, { useState } from "react";
-import { CalendarDaysIcon, HandRaisedIcon } from "@heroicons/react/24/outline";
+import React from "react";
 const Footer = () => {
   return (
-    <div>
       <div className="relative isolate overflow-hidden bg-gray-900 py-16 sm:py-24 lg:py-32">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-2">
-            <div className="max-w-xl lg:max-w-lg">
+            
+            {/* Subscribe to newsletter */}
+            <div className="max-w-xl lg:max-w-lg order-2 lg:order-1"> {/* Order changed for mobile */}
               <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
                 Subscribe to our newsletter.
               </h2>
@@ -37,34 +37,33 @@ const Footer = () => {
                 </button>
               </div>
             </div>
-            <dl className="grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2 lg:pt-2">
-              <div className="flex flex-col items-start">
-                <div className="rounded-md bg-white/5 p-2 ring-1 ring-white/10">
-                  <CalendarDaysIcon
-                    className="h-6 w-6 text-white"
-                    aria-hidden="true"
-                  />
-                </div>
-                <dt className="mt-4 font-semibold text-white">
-                  Weekly articles
-                </dt>
-                <dd className="mt-2 leading-7 text-gray-400">
-                  Non laboris consequat cupidatat laborum magna. Eiusmod non
-                  irure cupidatat duis commodo amet.
-                </dd>
+            
+            {/* Categories, Links, Support */}
+            <dl className="grid grid-cols-2 gap-x-8 gap-y-10 sm:grid-cols-3 lg:pt-2 order-1 lg:order-2"> {/* Order changed for mobile */}
+              <div className="lg:flex-1 flex flex-col gap-2.5 lg:text-justify sm:text-sm">
+                <h1 className="lg:text-lg sm:text-sm md:text-md font-medium text-white">
+                  Categories
+                </h1>
+                <span className="text-[gray]">Women</span>
+                <span className="text-[gray]">Men</span>
+                <span className="text-[gray]">Shoes</span>
+                <span className="text-[gray]">Accessories</span>
+                <span className="text-[gray]">New Arrivals</span>
               </div>
-              <div className="flex flex-col items-start">
-                <div className="rounded-md bg-white/5 p-2 ring-1 ring-white/10">
-                  <HandRaisedIcon
-                    className="h-6 w-6 text-white"
-                    aria-hidden="true"
-                  />
-                </div>
-                <dt className="mt-4 font-semibold text-white">No spam</dt>
-                <dd className="mt-2 leading-7 text-gray-400">
-                  Officia excepteur ullamco ut sint duis proident non
-                  adipisicing. Voluptate incididunt anim.
-                </dd>
+              <div className="flex-1 flex flex-col gap-2.5 text-justify text-sm">
+                <h1 className="lg:text-lg sm:text-sm md:text-md font-medium text-white">Links</h1>
+                <span className="text-[gray]">FAQ</span>
+                <span className="text-[gray]">Pages</span>
+                <span className="text-[gray]">Store</span>
+                <span className="text-[gray]">Compare</span>
+                <span className="text-[gray]">Cookies</span>
+              </div>
+              <div className="flex-1 flex flex-col gap-2.5 text-justify text-sm">
+                <h1 className="lg:text-lg sm:text-sm md:text-md font-medium text-white">Support</h1>
+                <span className="text-[gray]">Payment</span>
+                <span className="text-[gray]">Shipping</span>
+                <span className="text-[gray]">Privacy</span>
+                <span className="text-[gray]">Cancellation & return</span>
               </div>
             </dl>
           </div>
@@ -82,60 +81,6 @@ const Footer = () => {
           />
         </div>
       </div>
-
-      <div className="w-full h-full pt-[20px] pb-8 bg-slate-300">
-        <div className="mt-[70px] lg:mx-[200px] h-200">
-          <div className="lg:flex lg:gap-[50px] sm:flex sm:gap-[10px]">
-            <div className="lg:flex-1 flex flex-col gap-2.5 lg:text-justify sm:text-sm">
-              <h1 className="lg:text-lg sm:text-sm md:text-md font-medium text-[#555]">
-                Categories
-              </h1>
-              <span className="text-[gray]">Women</span>
-              <span className="text-[gray]">Men</span>
-              <span className="text-[gray]">Shoes</span>
-              <span className="text-[gray]">Accessories</span>
-              <span className="text-[gray]">New Arrivals</span>
-            </div>
-            <div className="flex-1 flex flex-col gap-2.5 text-justify text-sm">
-              <h1 className="text-lg font-medium text-[#555]">Links</h1>
-              <span className="text-[gray]">FAQ</span>
-              <span className="text-[gray]">Pages</span>
-              <span className="text-[gray]">Store</span>
-              <span className="text-[gray]">Compare</span>
-              <span className="text-[gray]">Cookies</span>
-            </div>
-            <div className="flex-1 flex flex-col gap-2.5 text-justify text-sm">
-              <h1 className="text-lg font-medium text-[#555]">About</h1>
-              <span className="text-[gray]">
-                lorem ipsum dolot sir amet cone adipsafd elit asdfasd, sof
-                iuhstne incidenti t sodlo. loremipsum dolor sit asmer o
-                sdfdsafs, sedo sf.
-              </span>
-            </div>
-            <div className="flex-1 flex flex-col gap-2.5 text-justify text-sm">
-              <h1 className="text-lg font-medium text-[#555]">Contact</h1>
-              <span className="text-[gray]">
-                Lorem upsum sit smet sdufasdufads fas fahsdukfhads fadskf as
-                fsujaufdjs fsfksasdfadsfs asda;jaeisfewnfiwfjw fe
-              </span>
-            </div>
-          </div>
-          <div className="flex items-center justify-between mt-[50px]">
-            <div className="flex items-center">
-              <span className="text-[#2879fe] font-[bold] text-[24px]">
-                Classic cuts
-              </span>
-              {/* <div id="copyrightYear" style="background-color:rgb(112, 109, 109)">
-                <span className='copyright'>document.getElementById('copyrightYear').innerHTML = copyrightFooter</span> */}
-              <span className="text-xs text-[gray] ml-5">© Copyright 2023</span>
-            </div>
-          </div>
-          {/* <div className="h-[50px]">
-        <img src="../logo.png" alt="" />
-      </div> */}
-        </div>
-      </div>
-    </div>
   );
 };
 

@@ -37,6 +37,6 @@ module.exports = {
     // eslint-disable-next-line no-undef
     require("tailwind-scrollbar"),
     require("@tailwindcss/aspect-ratio"),
-    require("@tailwindcss/forms"),
+    // require("@tailwindcss/forms"),
   ],
 };

@@ -5,18 +5,6 @@ import SignIn from "./SignIn";
 import SignUp from "./SignUp";
 import { useLocation } from "react-router";
 
-const style = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: 500,
-  borderRadius: 2,
-  bgcolor: "background.paper",
-  outline: "none",
-  boxShadow: 24,
-  p: 4,
-};
 
 const AuthForm = ({ handleClose, open }) => {
   const location = useLocation();
@@ -29,7 +17,7 @@ const AuthForm = ({ handleClose, open }) => {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={style}>
+        <Box className='authPopup'>
           {location.pathname === "/login" ? <SignIn /> : <SignUp />}
         </Box>
       </Modal>

@@ -1,12 +1,15 @@
-import { Grid, TextField, Button } from "@mui/material";
+import { Grid, TextField, Button, InputLabel, FormControl, OutlinedInput } from "@mui/material";
+import React, { useState } from "react";
 import { useNavigate } from "react-router";
 
 const SignIn = () => {
   const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    //logic to handle form submit
+    // Logic to handle form submit
   };
 
   return (
@@ -14,24 +17,36 @@ const SignIn = () => {
       <form onSubmit={handleSubmit}>
         <Grid container spacing={3}>
           <Grid item xs={12} sm={6}>
-            <TextField
-              required
-              id="email"
-              name="email"
-              label="Email"
-              fullWidth
-              autoComplete="email"
-            />
+            <FormControl fullWidth variant="outlined">
+              <InputLabel htmlFor="email">Email</InputLabel>
+              <OutlinedInput
+                required
+                id="email"
+                name="email"
+                type="email"
+                label="Email"
+                fullWidth
+                autoComplete="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </FormControl>
           </Grid>
           <Grid item xs={12} sm={6}>
-            <TextField
-              required
-              id="password"
-              name="password"
-              label="Passowrd"
-              fullWidth
-              autoComplete="password"
-            />
+            <FormControl fullWidth variant="outlined">
+              <InputLabel htmlFor="password">Password</InputLabel>
+              <OutlinedInput
+                required
+                id="password"
+                name="password"
+                label="Password"
+                fullWidth
+                type="password"
+                autoComplete="current-password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </FormControl>
           </Grid>
           <Grid item xs={12}>
             <Button
@@ -48,9 +63,9 @@ const SignIn = () => {
       </form>
       <div className="flex justify-center flex-col items-center">
         <div className="py-3 flex items-center">
-          <p>Dont have an account?</p>
+          <p>Don't have an account?</p>
           <Button className="ml-5" size="small" onClick={() => navigate("/")}>
-            register
+            Register
           </Button>
         </div>
       </div>

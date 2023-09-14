@@ -1,112 +1,140 @@
 // eslint-disable-next-line no-unused-vars
-import React from "react";
-import {
-  Input,
-  Ripple,
-  initTE,
-} from "tw-elements";
 
-
+import React, { useState } from "react";
+import { CalendarDaysIcon, HandRaisedIcon } from "@heroicons/react/24/outline";
 const Footer = () => {
-
-  initTE({ Input, Ripple });
-
   return (
-    // <div className="w-full h-full pt-[20px] pb-8 bg-slate-300">
-
-    
-    // <div className="mt-[70px] mx-[200px] h-200">
-    //   <div className="flex gap-[50px]">
     <div>
-
-    
-    <div className="px-6 pt-10 pb-5 bg-secondary-400 text-center">
-    <form action="">
-      <div className="grid-cols-1 grid items-center justify-center gap-4 md:grid-cols-3">
-        <div className="md:mb-6 md:ml-auto">
-          <p className="text-secondary-800">
-            <strong>Sign up for our newsletter</strong>
-          </p>
-        </div>
-
-        
-        <div className="relative md:mb-6" data-te-input-wrapper-init>
-          <input
-            type="text"
-            className="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:placeholder:text-secondary-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
-            id="exampleFormControlInput1"
-            placeholder="Email address" />
-          <label
-            htmlFor="exampleFormControlInput1"
-            className="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-secondary-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-secondary-200 dark:peer-focus:text-secondary-200"
-            >Email address
-          </label>
-        </div>
-
-          
-          <div className="mb-6 md:mr-auto">
-          {/* custom': '0 4px 9px -4px #3b71ca' */}
-            <button
-              type="button"
-              className="inline-block rounded bg-blue-500 px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-custom transition duration-150 ease-in-out hover:bg-blue-600 hover:shadow-custom2 focus:bg-blue-600 focus:shadow-custom2 focus:outline-none focus:ring-0 active:bg-blue-700 active:shadow-custom2"
-              data-te-ripple-init
-              data-te-ripple-color="light">
-              Subscribe
-            </button>
+      <div className="relative isolate overflow-hidden bg-gray-900 py-16 sm:py-24 lg:py-32">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-2">
+            <div className="max-w-xl lg:max-w-lg">
+              <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+                Subscribe to our newsletter.
+              </h2>
+              <p className="mt-4 text-lg leading-8 text-gray-300">
+                Nostrud amet eu ullamco nisi aute in ad minim nostrud
+                adipisicing velit quis. Duis tempor incididunt dolore.
+              </p>
+              <div className="mt-6 flex max-w-md gap-x-4">
+                <label htmlFor="email-address" className="sr-only">
+                  Email address
+                </label>
+                <input
+                  id="email-address"
+                  name="email"
+                  type="email"
+                  autoComplete="email"
+                  required
+                  className="min-w-0 flex-auto rounded-md border-0 bg-white/5 px-3.5 py-2 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
+                  placeholder="Enter your email"
+                />
+                <button
+                  type="submit"
+                  className="flex-none rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
+                >
+                  Subscribe
+                </button>
+              </div>
+            </div>
+            <dl className="grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2 lg:pt-2">
+              <div className="flex flex-col items-start">
+                <div className="rounded-md bg-white/5 p-2 ring-1 ring-white/10">
+                  <CalendarDaysIcon
+                    className="h-6 w-6 text-white"
+                    aria-hidden="true"
+                  />
+                </div>
+                <dt className="mt-4 font-semibold text-white">
+                  Weekly articles
+                </dt>
+                <dd className="mt-2 leading-7 text-gray-400">
+                  Non laboris consequat cupidatat laborum magna. Eiusmod non
+                  irure cupidatat duis commodo amet.
+                </dd>
+              </div>
+              <div className="flex flex-col items-start">
+                <div className="rounded-md bg-white/5 p-2 ring-1 ring-white/10">
+                  <HandRaisedIcon
+                    className="h-6 w-6 text-white"
+                    aria-hidden="true"
+                  />
+                </div>
+                <dt className="mt-4 font-semibold text-white">No spam</dt>
+                <dd className="mt-2 leading-7 text-gray-400">
+                  Officia excepteur ullamco ut sint duis proident non
+                  adipisicing. Voluptate incididunt anim.
+                </dd>
+              </div>
+            </dl>
           </div>
         </div>
-      </form>
+        <div
+          className="absolute left-1/2 top-0 -z-10 -translate-x-1/2 blur-3xl xl:-top-6"
+          aria-hidden="true"
+        >
+          <div
+            className="aspect-[1155/678] w-[72.1875rem] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30"
+            style={{
+              clipPath:
+                "polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)",
+            }}
+          />
+        </div>
       </div>
-      
 
-    <div className="w-full h-full pt-[20px] pb-8 bg-slate-300">    
-    
-    <div className="mt-[70px] lg:mx-[200px] h-200">
-      <div className="lg:flex lg:gap-[50px] sm:flex sm:gap-[10px]">
-        <div className="lg:flex-1 flex flex-col gap-2.5 lg:text-justify sm:text-sm">
-          <h1 className="lg:text-lg sm:text-sm md:text-md font-medium text-[#555]">Categories</h1>
-          <span className="text-[gray]">Women</span>
-          <span className="text-[gray]">Men</span>
-          <span className="text-[gray]">Shoes</span>
-          <span className="text-[gray]">Accessories</span>
-          <span className="text-[gray]">New Arrivals</span>
-        </div>
-        <div className="flex-1 flex flex-col gap-2.5 text-justify text-sm">
-          <h1 className="text-lg font-medium text-[#555]">Links</h1>
-          <span className="text-[gray]">FAQ</span>
-          <span className="text-[gray]">Pages</span>
-          <span className="text-[gray]">Store</span>
-          <span className="text-[gray]">Compare</span>
-          <span className="text-[gray]">Cookies</span>
-        </div>
-        <div className="flex-1 flex flex-col gap-2.5 text-justify text-sm">
-          <h1 className="text-lg font-medium text-[#555]">About</h1>
-          <span className="text-[gray]">
-            lorem ipsum dolot sir amet cone adipsafd elit asdfasd, sof iuhstne
-            incidenti t sodlo. loremipsum dolor sit asmer o sdfdsafs, sedo sf.
-          </span>
-        </div>
-        <div className="flex-1 flex flex-col gap-2.5 text-justify text-sm">
-          <h1 className="text-lg font-medium text-[#555]">Contact</h1>
-          <span className="text-[gray]">
-            Lorem upsum sit smet sdufasdufads fas fahsdukfhads fadskf as
-            fsujaufdjs fsfksasdfadsfs asda;jaeisfewnfiwfjw fe
-          </span>
-        </div>
-      </div>
-      <div className="flex items-center justify-between mt-[50px]">
-        <div className="flex items-center">
-          <span className="text-[#2879fe] font-[bold] text-[24px]">Classic cuts</span>
-          {/* <div id="copyrightYear" style="background-color:rgb(112, 109, 109)">
+      <div className="w-full h-full pt-[20px] pb-8 bg-slate-300">
+        <div className="mt-[70px] lg:mx-[200px] h-200">
+          <div className="lg:flex lg:gap-[50px] sm:flex sm:gap-[10px]">
+            <div className="lg:flex-1 flex flex-col gap-2.5 lg:text-justify sm:text-sm">
+              <h1 className="lg:text-lg sm:text-sm md:text-md font-medium text-[#555]">
+                Categories
+              </h1>
+              <span className="text-[gray]">Women</span>
+              <span className="text-[gray]">Men</span>
+              <span className="text-[gray]">Shoes</span>
+              <span className="text-[gray]">Accessories</span>
+              <span className="text-[gray]">New Arrivals</span>
+            </div>
+            <div className="flex-1 flex flex-col gap-2.5 text-justify text-sm">
+              <h1 className="text-lg font-medium text-[#555]">Links</h1>
+              <span className="text-[gray]">FAQ</span>
+              <span className="text-[gray]">Pages</span>
+              <span className="text-[gray]">Store</span>
+              <span className="text-[gray]">Compare</span>
+              <span className="text-[gray]">Cookies</span>
+            </div>
+            <div className="flex-1 flex flex-col gap-2.5 text-justify text-sm">
+              <h1 className="text-lg font-medium text-[#555]">About</h1>
+              <span className="text-[gray]">
+                lorem ipsum dolot sir amet cone adipsafd elit asdfasd, sof
+                iuhstne incidenti t sodlo. loremipsum dolor sit asmer o
+                sdfdsafs, sedo sf.
+              </span>
+            </div>
+            <div className="flex-1 flex flex-col gap-2.5 text-justify text-sm">
+              <h1 className="text-lg font-medium text-[#555]">Contact</h1>
+              <span className="text-[gray]">
+                Lorem upsum sit smet sdufasdufads fas fahsdukfhads fadskf as
+                fsujaufdjs fsfksasdfadsfs asda;jaeisfewnfiwfjw fe
+              </span>
+            </div>
+          </div>
+          <div className="flex items-center justify-between mt-[50px]">
+            <div className="flex items-center">
+              <span className="text-[#2879fe] font-[bold] text-[24px]">
+                Classic cuts
+              </span>
+              {/* <div id="copyrightYear" style="background-color:rgb(112, 109, 109)">
                 <span className='copyright'>document.getElementById('copyrightYear').innerHTML = copyrightFooter</span> */}
-          <span className="text-xs text-[gray] ml-5">© Copyright 2023</span>
-        </div>
-      </div>
-      {/* <div className="h-[50px]">
+              <span className="text-xs text-[gray] ml-5">© Copyright 2023</span>
+            </div>
+          </div>
+          {/* <div className="h-[50px]">
         <img src="../logo.png" alt="" />
       </div> */}
-    </div>
-    </div>
+        </div>
+      </div>
     </div>
   );
 };

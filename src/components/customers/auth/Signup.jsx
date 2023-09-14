@@ -1,13 +1,17 @@
-import { Grid, TextField, Button } from "@mui/material";
-import React from "react";
+import { Grid, Button, InputLabel, FormControl, OutlinedInput } from "@mui/material";
+import React, { useState } from "react";
 import { useNavigate } from "react-router";
 
 const SignUp = () => {
   const navigate = useNavigate();
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    //logic to handle form submit
+    // Logic to handle form submit
   };
 
   return (
@@ -15,44 +19,66 @@ const SignUp = () => {
       <form onSubmit={handleSubmit}>
         <Grid container spacing={3}>
           <Grid item xs={12} sm={6}>
-            <TextField
-              required
-              id="firstName"
-              name="firstName"
-              label="First Name"
-              fullWidth
-              autoComplete="Given-name"
-            />
+            <FormControl fullWidth variant="outlined">
+              <InputLabel htmlFor="firstName">First Name</InputLabel>
+              <OutlinedInput
+                required
+                id="firstName"
+                name="firstName"
+                label="First Name"
+                fullWidth
+                autoComplete="given-name"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+              />
+            </FormControl>
           </Grid>
           <Grid item xs={12} sm={6}>
-            <TextField
-              required
-              id="lastName"
-              name="lastName"
-              label="Last Name"
-              fullWidth
-              autoComplete="Given-name"
-            />
+            <FormControl fullWidth variant="outlined">
+              <InputLabel htmlFor="lastName">Last Name</InputLabel>
+              <OutlinedInput
+                required
+                id="lastName"
+                name="lastName"
+                label="Last Name"
+                fullWidth
+                autoComplete="family-name"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+              />
+            </FormControl>
           </Grid>
           <Grid item xs={12} sm={6}>
-            <TextField
-              required
-              id="email"
-              name="email"
-              label="Email"
-              fullWidth
-              autoComplete="email"
-            />
+            <FormControl fullWidth variant="outlined">
+              <InputLabel htmlFor="email">Email</InputLabel>
+              <OutlinedInput
+                required
+                id="email"
+                name="email"
+                type="email"
+                label="Email"
+                fullWidth
+                autoComplete="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </FormControl>
           </Grid>
           <Grid item xs={12} sm={6}>
-            <TextField
-              required
-              id="password"
-              name="password"
-              label="Passowrd"
-              fullWidth
-              autoComplete="password"
-            />
+            <FormControl fullWidth variant="outlined">
+              <InputLabel htmlFor="password">Password</InputLabel>
+              <OutlinedInput
+                required
+                id="password"
+                name="password"
+                label="Password"
+                fullWidth
+                type="password"
+                autoComplete="new-password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </FormControl>
           </Grid>
           <Grid item xs={12}>
             <Button
@@ -73,7 +99,7 @@ const SignUp = () => {
           <Button
             className="ml-5"
             size="small"
-            onClick={()=>navigate('/login')}
+            onClick={() => navigate('/login')}
           >
             Login
           </Button>

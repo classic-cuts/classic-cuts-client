@@ -3,6 +3,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import RemoveIcon from "@mui/icons-material/Remove";
 import AddIcon from "@mui/icons-material/Add";
 import { IconButton } from "@mui/material";
+import { Link } from "react-router-dom";
 
 const Cart = () => {
   const [addItem, setAddItem] = useState(1);
@@ -17,7 +18,7 @@ const Cart = () => {
 
   return (
     <div className="flex gap-4 py-5 px-2">
-      <div className="w-[70%] border-[2px] px-4 min-w-screen min-h-screen bg-gray-50 py-5">
+      <div className="w-[70%] border px-4 min-w-screen min-h-screen bg-gray-50 py-5">
         {/* Your cart title */}
         <div className="px-5">
           <div className="mb-2">
@@ -34,7 +35,7 @@ const Cart = () => {
                 {/* DIV OF AN ITEM */}
                 <div className="w-full mx-auto text-gray-800 font-light mb-6 border-b border-gray-200 pb-6">
                   <div className="flex justify-end">
-                    <IconButton aria-label="fingerprint" >
+                    <IconButton aria-label="fingerprint">
                       <DeleteIcon size="small" />
                     </IconButton>
                   </div>
@@ -58,7 +59,7 @@ const Cart = () => {
                         <button onClick={DecreaseItem} disabled={addItem === 1}>
                           <RemoveIcon fontSize="small" />
                         </button>
-                        <span className="border-2 pl-2 pr-2 border-x-black border-y-stone-500">
+                        <span className="border-[1.5px] pl-1 pr-2 border-x-black border-y-stone-500">
                           {addItem}
                         </span>
                         <button onClick={IncreaseItem}>
@@ -68,7 +69,7 @@ const Cart = () => {
                     </div>
                     <div>
                       <span className="font-semibold text-gray-600 text-xl">
-                        $210.00
+                        ${addItem * 210}.00
                       </span>
                     </div>
                   </div>
@@ -80,7 +81,7 @@ const Cart = () => {
       </div>
 
       {/* Price details */}
-      <div className="px-10 py-3">
+      <div className="px-10 py-3w-full">
         <div className="fixed">
           <div className="mb-4 pb-6 border-b font-semibold border-gray-200  text-[#878787] text-xl">
             PRICE DETAILS
@@ -93,7 +94,7 @@ const Cart = () => {
                 <span className="text-gray-600">Subtotal</span>
               </div>
               <div className="pl-3">
-                <span className="font-semibold">$190.91</span>
+                <span className="font-semibold">${addItem * 210}</span>
               </div>
             </div>
             <div className="w-full mb-3 flex items-center">
@@ -101,7 +102,9 @@ const Cart = () => {
                 <span className="text-gray-600">Taxes (GST)</span>
               </div>
               <div className="pl-3">
-                <span className="font-semibold">$19.09</span>
+                <span className="font-semibold">
+                  ${(addItem * 210 * 0.02).toFixed(2)}
+                </span>
               </div>
             </div>
             <div className="w-full flex mb-3 items-center">
@@ -144,15 +147,20 @@ const Cart = () => {
                 <span className="text-gray-600">Total</span>
               </div>
               <div className="pl-3">
-                <span className="font-semibold">$210.00</span>
+                <span className="font-semibold">
+                  ${addItem * 210 * 0.02 + addItem * 210 + 5}
+                </span>
               </div>
             </div>
           </div>
           {/* CHECKOUT BUTTON */}
           <div>
-            <button className="block w-full max-w-xs mx-auto bg-indigo-500 hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-2 font-semibold">
-              <i className="mdi mdi-lock-outline mr-1"></i> PAY @210.00
-            </button>
+            <Link to="/checkout">
+              <button className="block w-full max-w-xs mx-auto bg-indigo-500 hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-2 font-semibold">
+                <i className="mdi mdi-lock-outline mr-1"></i> PAY @
+                {addItem * 210 * 0.02 + addItem * 210 + 5}
+              </button>
+            </Link>
           </div>
         </div>
       </div>

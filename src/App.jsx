@@ -3,9 +3,10 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from "react-route
 import Homepage from "./pages/Homepage";
 import Footer from "./components/footer/Footer";
 import ProductPage from "./components/products/Products";
-import Cart from "./components/cart/Cart";
+import CartPage from "./pages/CartPage";
 import ContactUs from "./pages/ContactUs";
 import Navbar from "./components/Navbar/Navbar";
+import CheckoutPage from "./pages/CheckoutPage";
 
 const ScrollToTop = () => {
   const {pathname} = useLocation();
@@ -27,7 +28,8 @@ const App = () => {
           <Route path="/login" element={<Homepage />} />
           <Route path="/product/:id" element={<ProductPage/>} />
           <Route path="/contact-us" element={<ContactUs/>} />
-          <Route path="/cart" element={<Cart />} />
+          <Route path="/cart" element={<CartPage />} />
+          <Route path="/checkout" element={<CheckoutPage />} />
         </Routes>
       </Router>
       

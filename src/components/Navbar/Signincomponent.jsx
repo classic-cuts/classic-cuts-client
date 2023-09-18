@@ -18,7 +18,7 @@ const SignInComponent = () => {
         className="text-sm font-medium text-gray-700 hover:text-gray-800"
         onClick={openModal}
       >
-        Sign in
+        Sign up
       </button>
       <span className="h-6 w-px bg-gray-200" aria-hidden="true" />
       <button className="text-sm font-medium text-gray-700 hover:text-gray-800">

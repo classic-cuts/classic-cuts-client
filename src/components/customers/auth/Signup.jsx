@@ -16,7 +16,7 @@ const SignUp = () => {
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="form-no-outline">
         <Grid container spacing={3}>
           <Grid item xs={12} sm={6}>
             <FormControl fullWidth variant="outlined">

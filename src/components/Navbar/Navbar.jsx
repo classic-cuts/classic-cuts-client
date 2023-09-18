@@ -8,6 +8,7 @@ import {
 import { Link } from "react-router-dom";
 import Cart from "./Cart";
 import SignInComponent from "./Signincomponent";
+import { cartContext } from "../../context/AddToCart/CartValue";
 
 const navigation = {
   categories: [
@@ -147,7 +148,7 @@ export default function Navbar(props) {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="bg-white">
+    <div className="bg-white sticky top-0">
       {/* Mobile menu */}
       <Transition.Root show={open} as={Fragment}>
         <Dialog as="div" className="relative z-40 lg:hidden" onClose={setOpen}>
@@ -333,7 +334,7 @@ export default function Navbar(props) {
 
               {/* Logo */}
               <div className="ml-4 flex lg:ml-0">
-                <Link to="#">
+                <Link to="/">
                   <img className="h-8 w-auto" src="/logo.png" alt="" />
                 </Link>
               </div>
@@ -453,7 +454,7 @@ export default function Navbar(props) {
               </Popover.Group>
 
               {/* Search */}
-              <div className="flex w-1/2 rounded-md border border-zinc-500 bg-white py-2 font-satoshi pl-5 pr-12 ml-20 text-sm shadow-lg font-medium focus:border-black focus:outline-none focus:ring-0">
+              <div className="form-no-outline flex w-1/2 rounded-md border border-zinc-500 bg-white py-2 font-satoshi pl-5 pr-12 ml-20 text-sm shadow-lg font-medium focus:border-black focus:outline-none focus:ring-0">
                 <div className="w-full border-transparent">
                   <input
                     type="text"

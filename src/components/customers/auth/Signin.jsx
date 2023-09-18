@@ -1,4 +1,4 @@
-import { Grid, TextField, Button, InputLabel, FormControl, OutlinedInput } from "@mui/material";
+import { Grid, Button, InputLabel, FormControl, OutlinedInput } from "@mui/material";
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
 
@@ -14,7 +14,7 @@ const SignIn = () => {
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="form-no-outline">
         <Grid container spacing={3}>
           <Grid item xs={12} sm={6}>
             <FormControl fullWidth variant="outlined">

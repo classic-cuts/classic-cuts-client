@@ -8,7 +8,6 @@ import {
 import { Link } from "react-router-dom";
 import Cart from "./Cart";
 import SignInComponent from "./Signincomponent";
-import { cartContext } from "../../context/AddToCart/CartValue";
 
 const navigation = {
   categories: [
@@ -148,7 +147,7 @@ export default function Navbar(props) {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="bg-white sticky top-0">
+    <div className="bg-white sticky top-0 z-50">
       {/* Mobile menu */}
       <Transition.Root show={open} as={Fragment}>
         <Dialog as="div" className="relative z-40 lg:hidden" onClose={setOpen}>

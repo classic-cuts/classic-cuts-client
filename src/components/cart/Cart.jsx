@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
 import RemoveIcon from "@mui/icons-material/Remove";
 import AddIcon from "@mui/icons-material/Add";
@@ -6,6 +6,10 @@ import { IconButton } from "@mui/material";
 import { Link } from "react-router-dom";
 
 const Cart = () => {
+  useEffect(() => {
+    document.title = "Shopping Cart | Classic Cuts";
+  }, []);
+
   const [addItem, setAddItem] = useState(1);
 
   const DecreaseItem = () => {
@@ -59,7 +63,7 @@ const Cart = () => {
                         <button onClick={DecreaseItem} disabled={addItem === 1}>
                           <RemoveIcon fontSize="small" />
                         </button>
-                        <span className="border-[1.5px] pl-1 pr-2 border-x-black border-y-stone-500">
+                        <span className="border-[1.5px] pl-1 pr-2 rounded-sm border-x-black border-y-stone-500">
                           {addItem}
                         </span>
                         <button onClick={IncreaseItem}>

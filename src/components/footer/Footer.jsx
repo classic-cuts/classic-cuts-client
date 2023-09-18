@@ -1,6 +1,4 @@
 // eslint-disable-next-line no-unused-vars
-
-import React from "react";
 const Footer = () => {
   return (
       <div className="relative isolate overflow-hidden bg-gray-900 py-16 sm:py-24 lg:py-32">
@@ -13,8 +11,7 @@ const Footer = () => {
                 Subscribe to our newsletter.
               </h2>
               <p className="mt-4 text-lg leading-8 text-gray-300">
-                Nostrud amet eu ullamco nisi aute in ad minim nostrud
-                adipisicing velit quis. Duis tempor incididunt dolore.
+                Don't miss our newsletters if you don't wanna miss our exciting offers!
               </p>
               <div className="mt-6 flex max-w-md gap-x-4">
                 <label htmlFor="email-address" className="sr-only">
@@ -53,9 +50,9 @@ const Footer = () => {
               <div className="flex-1 flex flex-col gap-2.5 text-justify text-sm">
                 <h1 className="lg:text-lg sm:text-sm md:text-md font-medium text-white">Links</h1>
                 <span className="text-[gray]">FAQ</span>
-                <span className="text-[gray]">Pages</span>
-                <span className="text-[gray]">Store</span>
-                <span className="text-[gray]">Compare</span>
+                <span className="text-[gray]"><a href="http://localhost:5173/contact-us">Contact Us</a></span>
+                <span className="text-[gray]"><a href="http://localhost:5173">Home</a></span>
+                <span className="text-[gray]">Careers</span>
                 <span className="text-[gray]">Cookies</span>
               </div>
               <div className="flex-1 flex flex-col gap-2.5 text-justify text-sm">

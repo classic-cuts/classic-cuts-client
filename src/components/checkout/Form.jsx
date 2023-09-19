@@ -1,8 +1,10 @@
-import React, { useState, useContext, useEffect } from "react";
+import { useState, useContext, useEffect } from "react";
+import { Link } from "react-router-dom";
+
 import Button from "@mui/material/Button";
+
 import HorizontalLinearStepper from "./Stepper";
 import { CheckoutStepContext } from "../../context/CheckoutStep/Step";
-import { Link } from "react-router-dom";
 import { PaymentDetailsForm } from "./PaymentDetailsForm";
 import { ShippingDetailsForm } from "./ShippingDetailsForm";
 

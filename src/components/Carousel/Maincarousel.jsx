@@ -1,6 +1,7 @@
-import React from "react";
+/* eslint-disable react/jsx-key */
 import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
+
 import { mainCarouselData } from "../../assets/MaincarouselData/MaincarouselData";
 
 const items = mainCarouselData.map((item) => (

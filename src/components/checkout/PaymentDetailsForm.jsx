@@ -1,6 +1,8 @@
-import React, { useState, useContext, useEffect } from "react";
+import { useState, useContext, useEffect } from "react";
+
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
+
 import { CheckoutStepContext } from "../../context/CheckoutStep/Step";
 import ValidateCard from "./Helpers/validateCard";
 

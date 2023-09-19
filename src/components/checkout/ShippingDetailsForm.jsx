@@ -1,7 +1,9 @@
-import React, { useState, useContext, useEffect } from "react";
+import { useState, useContext, useEffect } from "react";
+
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { FormControl, Grid } from "@mui/material";
+
 import { CheckoutStepContext } from "../../context/CheckoutStep/Step";
 
 export function ShippingDetailsForm({ onNext }) {

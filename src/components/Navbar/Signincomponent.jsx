@@ -1,5 +1,6 @@
-import React, { useState } from "react";
-import AuthForm from "../customers/auth/Authform";
+import { useState } from "react";
+
+import AuthForm from "../customers/auth/AuthForm";
 // import Signup from "../customers/auth/Signup";
 
 const SignInComponent = () => {

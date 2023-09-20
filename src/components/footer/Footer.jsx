@@ -1,7 +1,10 @@
+/* eslint-disable react/no-unescaped-entities */
 // eslint-disable-next-line no-unused-vars
+import { Link } from "react-router-dom";
+
 const Footer = () => {
   return (
-      <div className="relative isolate overflow-hidden bg-gray-900 py-16 sm:py-24 lg:py-32">
+      <div className="relative isolate overflow-hidden bg-gray-900 py-16 sm:py-24 lg:py-20">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-2">
             
@@ -45,22 +48,22 @@ const Footer = () => {
                 <span className="text-[gray]">Men</span>
                 <span className="text-[gray]">Shoes</span>
                 <span className="text-[gray]">Accessories</span>
-                <span className="text-[gray]">New Arrivals</span>
+                <span className="text-[gray]"><Link to="/new-arrivals">New Arrivals</Link></span>
               </div>
               <div className="flex-1 flex flex-col gap-2.5 text-justify text-sm">
                 <h1 className="lg:text-lg sm:text-sm md:text-md font-medium text-white">Links</h1>
-                <span className="text-[gray]">FAQ</span>
-                <span className="text-[gray]"><a href="http://localhost:5173/contact-us">Contact Us</a></span>
-                <span className="text-[gray]"><a href="http://localhost:5173">Home</a></span>
+                <span className="text-[gray]">FAQs</span>
+                <span className="text-[gray]"><Link to="/contact-us">Contact Us</Link></span>
+                <span className="text-[gray]"><Link to="/">Home</Link></span>
                 <span className="text-[gray]">Careers</span>
-                <span className="text-[gray]">Cookies</span>
+                {/* <span className="text-[gray]">Cookies</span> */}
               </div>
               <div className="flex-1 flex flex-col gap-2.5 text-justify text-sm">
                 <h1 className="lg:text-lg sm:text-sm md:text-md font-medium text-white">Support</h1>
-                <span className="text-[gray]">Payment</span>
-                <span className="text-[gray]">Shipping</span>
-                <span className="text-[gray]">Privacy</span>
-                <span className="text-[gray]">Cancellation & return</span>
+                {/* <span className="text-[gray]">Payment</span> */}
+                <span className="text-[gray]">Shipping Policy</span>
+                <span className="text-[gray]">Privacy Policy</span>
+                <span className="text-[gray]">Cancellation & returns</span>
               </div>
             </dl>
           </div>

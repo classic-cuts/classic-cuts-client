@@ -1,13 +1,15 @@
 import { Fragment, useState } from "react";
+import { Link } from "react-router-dom";
+
 import { Dialog, Popover, Tab, Transition } from "@headlessui/react";
 import {
   Bars3Icon,
   MagnifyingGlassIcon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
-import { Link } from "react-router-dom";
+
 import Cart from "./Cart";
-import SignInComponent from "./Signincomponent";
+import SignInComponent from "./SignInComponent";
 
 const navigation = {
   categories: [

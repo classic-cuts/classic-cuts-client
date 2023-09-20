@@ -1,6 +1,8 @@
-import { Grid, Button, InputLabel, FormControl, OutlinedInput } from "@mui/material";
-import React, { useState } from "react";
+/* eslint-disable react/no-unescaped-entities */
+import { useState } from "react";
 import { useNavigate } from "react-router";
+
+import { Grid, Button, InputLabel, FormControl, OutlinedInput } from "@mui/material";
 
 const SignIn = () => {
   const navigate = useNavigate();

@@ -5,8 +5,13 @@ import { Link, useParams } from "react-router-dom";
 
 import { StarIcon } from '@heroicons/react/20/solid'
 import { RadioGroup } from '@headlessui/react'
+import { MdSecurity } from "react-icons/md";
+import { TbTruckDelivery, TbReplace } from "react-icons/tb";
+import {GiTakeMyMoney} from "react-icons/Gi"
+
 
 import { useProductContext } from "../../context/ProductContext/ProductContext";
+import FormatPrice from "../../helpers/FormatPrice";
 
 
 //TODO:BE api to be updated here. works with another dummy api. however, this api would not work.
@@ -169,7 +174,12 @@ const ProductPage = () => {
     {/* Options */}
     <div className="mt-4 lg:row-span-3 lg:mt-0">
       <h2 className="sr-only">Product information</h2>
-      <p className="text-3xl tracking-tight text-gray-900">{product.price}</p>
+      <p className="text-xl tracking-tight text-gray-900">MRP: <del>
+        <FormatPrice price={6000 + 2500}/>
+        </del></p>
+      <p className="text-2xl tracking-tight text-red-700 font-bold">
+        Deal of the Day: <FormatPrice price={6000}/>
+      </p>
 
       {/* Reviews */}
       <div className="mt-6">
@@ -240,7 +250,7 @@ const ProductPage = () => {
             </a>
           </div>
 
-          <RadioGroup value={selectedSize} onChange={setSelectedSize} className="mt-4">
+          <RadioGroup value={selectedSize} onChange={setSelectedSize} className="mt-4 mb-4">
             <RadioGroup.Label className="sr-only">Choose a size</RadioGroup.Label>
             <div className="grid grid-cols-4 gap-4 sm:grid-cols-8 lg:grid-cols-4">
               {product.sizes.map((size) => (
@@ -291,6 +301,10 @@ const ProductPage = () => {
               ))}
             </div>
           </RadioGroup>
+
+          <h3 className={`text-sm font-medium ${stock > 0 ? 'text-green-600' : 'text-red-600'}`}>
+            {stock > 0 ? "Available" : "Out of Stock"}
+          </h3>
         </div>
 
         <button
@@ -330,8 +344,33 @@ const ProductPage = () => {
         <h2 className="text-sm font-medium text-gray-900">Details</h2>
 
         <div className="mt-4 space-y-6">
-          <p className="text-sm text-gray-600">{product.details}</p>
+          <p className="text-sm text-gray-900">{product.details}</p>
         </div>
+
+        <div className="product-data-warranty">
+
+          <div className="product-warranty-data">
+          <TbTruckDelivery className="warranty-icon"/>
+          <p className="text-sm text-gray-900 pt-1"> Free Delivery </p>
+          </div>
+
+          <div className="product-warranty-data">
+          <TbReplace className="warranty-icon"/>
+          <p className="text-sm text-gray-900 pt-1"> 30 days Replacement </p>
+          </div>
+
+          <div className="product-warranty-data">
+          <GiTakeMyMoney className="warranty-icon"/>
+          <p className="text-sm text-gray-900 pt-1"> Cash on Delivery </p>
+          </div>
+
+          <div className="product-warranty-data">
+          <MdSecurity className="warranty-icon"/>
+          <p className="text-sm text-gray-900 pt-1"> 2 Year Warranty </p>
+          </div>
+
+        </div>
+        
       </div>
     </div>
   </div>

@@ -2,7 +2,7 @@ import { useProductContext } from "../../context/ProductContext/ProductContext"
 import Product from "../product/Product";
 
 
-const FeatureProduct = () => {
+const FeatureProducts = () => {
     // const {isLoading, featureProducts} = useProductContext();
     // if(isLoading){
     //     return<div>...is loading</div>
@@ -18,7 +18,7 @@ const FeatureProduct = () => {
 
         <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
           {featureProducts.map((curElem) => {
-            return <Product key={curElem._id} {...curElem}/>;
+            return <Product key={curElem.id} {...curElem}/>;
             })}
           
             {/* <div key={curElem.id} className="group relative">
@@ -51,4 +51,4 @@ const FeatureProduct = () => {
   )
 }
 
-export default FeatureProduct
+export default FeatureProducts

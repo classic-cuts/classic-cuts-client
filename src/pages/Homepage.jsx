@@ -1,9 +1,8 @@
 import { useEffect } from 'react'
 
 import Maincarousel from '../components/carousel/MainCarousel'
-import ProductsList from '../components/products-list/ProductsList'
-import { FrequentBuys } from '../components/products-list/FrequentBuys'
-import FeatureProduct from '../components/feature-products/FeatureProduct'
+import FeatureProducts from '../components/feature-products/FeatureProducts'
+import { FrequentBuys } from '../components/feature-products/FrequentBuys'
 
 const Homepage = () => {
   useEffect(()=>{
@@ -12,8 +11,7 @@ const Homepage = () => {
   return (
     <div>
       <Maincarousel />
-      <FeatureProduct/>
-      <ProductsList/>
+      <FeatureProducts/>
       <FrequentBuys/>
     </div>
   )

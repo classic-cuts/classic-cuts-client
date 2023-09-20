@@ -1,18 +1,15 @@
-import { useContext } from "react";
 import { Link } from "react-router-dom";
 
-import { cartContext } from "../../context/AddToCart/CartValue";
+import CartProducts from "../cart/CartProducts";
 
 const Cart = () => {
-  const newCartContext = useContext(cartContext);
-
   return (
     <div className="ml-4 flow-root lg:ml-6">
       <Link to="/cart" className="group -m-2 flex items-center p-2">
         <div className="relative py-2">
           <div className="t-0 absolute left-3">
             <p className="flex h-2 w-2 items-center justify-center rounded-full bg-red-500 p-3 text-xs text-white">
-              {newCartContext.cartValue}
+              {CartProducts.length}
             </p>
           </div>
           <svg

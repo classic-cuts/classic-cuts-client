@@ -1,10 +1,7 @@
 import { useState } from "react";
-import { useNavigate } from "react-router";
-
 import { Grid, Button, InputLabel, FormControl, OutlinedInput } from "@mui/material";
 
-const SignUp = () => {
-  const navigate = useNavigate();
+const SignUp = ({toggleForm}) => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -100,7 +97,7 @@ const SignUp = () => {
           <Button
             className="ml-5"
             size="small"
-            onClick={() => navigate('/login')}
+            onClick={toggleForm}
           >
             Login
           </Button>

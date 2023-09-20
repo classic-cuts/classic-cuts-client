@@ -1,11 +1,8 @@
 /* eslint-disable react/no-unescaped-entities */
 import { useState } from "react";
-import { useNavigate } from "react-router";
-
 import { Grid, Button, InputLabel, FormControl, OutlinedInput } from "@mui/material";
 
-const SignIn = () => {
-  const navigate = useNavigate();
+const SignIn = ({toggleForm}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -66,7 +63,7 @@ const SignIn = () => {
       <div className="flex justify-center flex-col items-center">
         <div className="py-3 flex items-center">
           <p>Don't have an account?</p>
-          <Button className="ml-5" size="small" onClick={() => navigate("/")}>
+          <Button className="ml-5" size="small" onClick={toggleForm}>
             Register
           </Button>
         </div>

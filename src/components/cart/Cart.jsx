@@ -17,71 +17,40 @@ const Cart = () => {
   const payableAmount = totalPrice + taxes + shippingCharges;
 
   return (
-    <div className="flex gap-4 py-5 px-2">
-      <div className="w-[70%] border px-4 min-w-screen min-h-screen bg-gray-50 py-5">
+    <div className="flex flex-col md:flex-row py-5 px-2 gap-2 bg-[#F1F3F6]">
+      <div className="w-full md:w-[70%] px-4 py-5">
         {/* Your cart headline */}
-        <div className="px-5">
+        {/* <div className="px-5">
           <div className="mb-2">
             <h1 className="text-3xl md:text-5xl font-bold text-gray-600">
               Your cart.
             </h1>
           </div>
-        </div>
+        </div> */}
 
-        <div className="w-full border-t border-b border-gray-200 px-5 py-10 text-gray-800">
-          <div className="w-full">
-            <div className="-mx-3 md:flex items-start">
-              <div className="overflow-y-auto max-h-[60vh] px-3 md:w-full lg:pr-10">
-                {/* DIV OF AN ITEM */}
-                {CartProducts.map((cart_item) => (
-                  <CartItem
-                    key={cart_item.id}
-                    name={cart_item.name}
-                    image={cart_item.image}
-                    price={cart_item.price}
-                  />
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
+        {/* DIV OF AN ITEM */}
+        {CartProducts.map((cart_item) => (
+          <CartItem
+            key={cart_item.id}
+            name={cart_item.name}
+            image={cart_item.image}
+            price={cart_item.price}
+          />
+        ))}
       </div>
 
       {/* Price details */}
-      <div className="px-10 py-3w-full">
-        <div className="fixed">
-          <div className="mb-4 pb-6 border-b font-semibold border-gray-200  text-[#878787] text-xl">
+      <div className="w-full md:w-[30%]">
+        <div className="mt-5 px-4 md:px-10 bg-gray-50 py-3 overflow-hidden max-h-[300px] shadow-md ">
+          <div className="mb-4 pb-6 border-b font-semibold border-gray-200 text-[#878787] text-xl">
             PRICE DETAILS
           </div>
 
           {/* SUBTOAL TAXES AND GST */}
           <PriceBreakdown />
 
-          {/* DISCOUNT CODE */}
-          <div className="mb-6 pb-6 border-b border-gray-200">
-            <div className="-mx-2 flex items-end justify-end">
-              <div className="flex-grow px-2 lg:max-w-xs">
-                <label className="text-gray-600 font-semibold text-sm mb-2 ml-1">
-                  Discount code
-                </label>
-                <div>
-                  <input
-                    className="w-full px-3 py-2 border border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors"
-                    placeholder="XXXXXX"
-                    type="text"
-                  />
-                </div>
-              </div>
-              <div className="px-2">
-                <button className="block w-full max-w-xs mx-auto border border-transparent bg-gray-400 hover:bg-gray-500 focus:bg-gray-500 text-white rounded-md px-5 py-2 font-semibold">
-                  APPLY
-                </button>
-              </div>
-            </div>
-          </div>
-
           {/* TOTAL AMOUNT */}
-          <div className="mb-6 pb-6 border-b border-gray-200 md:border-none text-gray-800 text-xl">
+          <div className="pb-6 border-b border-gray-200 md:border-none text-gray-800 text-xl">
             <div className="w-full flex items-center">
               <div className="flex-grow">
                 <span className="text-gray-600">Total</span>
@@ -92,8 +61,23 @@ const Cart = () => {
             </div>
           </div>
           {/* CHECKOUT BUTTON */}
-          <CheckoutButton message="Proceed to checkout" />
+          <CheckoutButton message="Place order" />
         </div>
+
+        {/* Safe ans secure payments logo*/}
+        <div className="mt-3">
+          <div className="flex gap-2 items-center">
+            <div className="">
+              <img src="./safe_pay.png" alt="Safe Pay"  className="w-8 h-6" />
+            </div>
+            <div>
+              <h2 className="font-semibold border-gray-200 text-[#656565] text-sm">
+                Safe and Secure Payments. Easy returns. 100% Authentic products.
+              </h2>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   );

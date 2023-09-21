@@ -23,7 +23,7 @@ const CartItem = (props) => {
   };
 
   return (
-    <div className="w-full text-gray-800 mx-auto font-light mb-6 border-b border-gray-200 pb-6">
+    <div className="w-full text-gray-800 mx-auto font-light mb-6 border-b bg-gray-50 border-gray-200 p-6 shadow-md">
       <div className="flex justify-end">
         <IconButton aria-label="delete">
           <DeleteIcon size="small" />

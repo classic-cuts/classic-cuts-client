@@ -7,7 +7,7 @@ const PriceBreakdown = () => {
   const shippingCharges = totalPrice > 100 ? 0 : 5;
 
   return (
-    <div className="mb-6 pb-6 border-b border-gray-200 text-gray-800">
+    <div className="mb-6 text-gray-800">
       <div className="w-full flex mb-3 items-center">
         <div className="flex-grow">
           <span className="text-gray-600">Subtotal</span>
@@ -30,7 +30,14 @@ const PriceBreakdown = () => {
         </div>
         <div className="pl-3">
           <span className="font-semibold">
-            {shippingCharges ? "$" + shippingCharges : "-FREE"}
+            {shippingCharges !== 0 ? (
+              "$" + shippingCharges
+            ) : (
+              <>
+                <s>$5</s> 
+                <span className="text-red-500"> Free</span>
+              </>
+            )}
           </span>
         </div>
       </div>

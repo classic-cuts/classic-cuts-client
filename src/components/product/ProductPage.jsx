@@ -12,6 +12,7 @@ import {GiTakeMyMoney} from "react-icons/Gi"
 
 import { useProductContext } from "../../context/ProductContext/ProductContext";
 import FormatPrice from "../../helpers/FormatPrice";
+import ProductImages from "./ProductImages";
 
 
 //TODO:BE api to be updated here. works with another dummy api. however, this api would not work.
@@ -94,6 +95,7 @@ const ProductPage = () => {
     stock,
     stars,
     image,
+    brand,
     // reviews,
   } = singleProduct;
   
@@ -164,6 +166,10 @@ const ProductPage = () => {
       />
     </div>
   </div>
+  {/* <div className="flex items-center">
+  <ProductImages imgs={image}/>
+
+  </div> */}
 
   {/* Product info */}
   <div className="mx-auto max-w-2xl px-4 pb-16 pt-10 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8 lg:px-8 lg:pb-24 lg:pt-16">
@@ -301,7 +307,10 @@ const ProductPage = () => {
               ))}
             </div>
           </RadioGroup>
-
+          <h3 className="text-sm font-medium mb-4">
+            Brand: <span className="font-normal">{brand}</span>
+            
+            </h3>                  
           <h3 className={`text-sm font-medium ${stock > 0 ? 'text-green-600' : 'text-red-600'}`}>
             {stock > 0 ? "Available" : "Out of Stock"}
           </h3>

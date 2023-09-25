@@ -13,6 +13,7 @@ import {GiTakeMyMoney} from "react-icons/Gi"
 import { useProductContext } from "../../context/ProductContext/ProductContext";
 import FormatPrice from "../../helpers/FormatPrice";
 import ProductImages from "./ProductImages";
+import Ratings from "../ratings/ratings";
 
 
 //TODO:BE api to be updated here. works with another dummy api. however, this api would not work.
@@ -75,7 +76,7 @@ const ProductPage = () => {
       'The 6-Pack includes two black, two white, and two heather gray Basic Tees. Sign up for our subscription service and be the first to get new, exciting colors, like our upcoming "Charcoal Gray" limited release.',
   }
   
-  const reviews = { href: '#', average: 4, totalCount: 117 }
+  const reviews = { href: '#', average: 1.5, totalCount: 100 }
   function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
   }
@@ -190,7 +191,7 @@ const ProductPage = () => {
       {/* Reviews */}
       <div className="mt-6">
         <h3 className="sr-only">Reviews</h3>
-        <div className="flex items-center">
+        {/* <div className="flex items-center">
           <div className="flex items-center">
             {[0, 1, 2, 3, 4].map((rating) => (
               <StarIcon
@@ -207,7 +208,8 @@ const ProductPage = () => {
           <a href={reviews.href} className="ml-3 text-sm font-medium text-indigo-600 hover:text-indigo-500">
             {reviews.totalCount} reviews
           </a>
-        </div>
+        </div> */}
+        <Ratings stars={reviews.average} reviews={reviews.totalCount} />
       </div>
 
       <form className="mt-10">

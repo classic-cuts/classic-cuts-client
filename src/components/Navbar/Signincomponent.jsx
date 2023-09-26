@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 import AuthForm from "../customers/auth/Authform";
 // import Signup from "../customers/auth/Signup";
@@ -23,7 +24,7 @@ const SignInComponent = () => {
       </button>
       <span className="h-6 w-px bg-gray-200" aria-hidden="true" />
       <button className="text-sm font-medium text-gray-700 hover:text-gray-800">
-        Become a seller
+        <Link to="/create-product">Become a seller</Link>
       </button>
 
       {/* //modal for signup and login */}

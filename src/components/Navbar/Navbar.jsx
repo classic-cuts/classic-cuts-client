@@ -297,13 +297,15 @@ export default function Navbar(props) {
                       Sign in
                     </Link>
                   </div>
-                  <div className="flow-root">
-                    <Link
-                      to="#"
-                      className="-m-2 block p-2 font-medium text-gray-900"
-                    >
-                      Become a seller
-                    </Link>
+                  <div>
+                    <span>
+                      <Link
+                        to="/create-product"
+                        className="-m-2 p-2 font-medium text-gray-900"
+                      >
+                        Become a seller
+                      </Link>
+                    </span>
                   </div>
                 </div>
               </Dialog.Panel>

@@ -3,16 +3,15 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 
-import { StarIcon } from '@heroicons/react/20/solid'
 import { RadioGroup } from '@headlessui/react'
-import { MdSecurity } from "react-icons/md";
-import { TbTruckDelivery, TbReplace } from "react-icons/tb";
+import { MdSecurity } from "react-icons/Md";
+import { TbTruckDelivery, TbReplace } from "react-icons/Tb";
 import {GiTakeMyMoney} from "react-icons/Gi"
 
 
 import { useProductContext } from "../../context/ProductContext/ProductContext";
 import FormatPrice from "../../helpers/FormatPrice";
-import ProductImages from "./ProductImages";
+// import ProductImages from "./ProductImages";
 import Ratings from "../ratings/ratings";
 
 

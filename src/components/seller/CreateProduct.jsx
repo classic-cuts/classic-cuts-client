@@ -10,7 +10,6 @@ function CreateProductComp() {
     description: "",
     category: "",
     price: "",
-    priceError: "",
     discount: "",
     size: "",
     images: null,
@@ -20,24 +19,29 @@ function CreateProductComp() {
   });
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    try {
+      const { name, value } = e.target;
+      setFormData({ ...formData, [name]: value });
+    } catch (error) {
+      console.error("Error in handleChange:", error);
+    }
   };
 
   const handleAddStock = () => {
     try {
-      const { size, color, quantity, price, discount } = formData;
-      // if (
-      //   !size ||
-      //   !color ||
-      //   !Number(price) ||
-      //   !price ||
-      //   !Number(discount) ||
-      //   !quantity
-      // ) {
-      //   console.log("Please enter all the details");
-      //   return;
-      // }
+      const { size, color, quantity, price, discount, stocks } = formData;
+      if (
+        (stocks.length === 0 && !size) ||
+        (stocks.length === 0 && !color) ||
+        (stocks.length === 0 && !Number(price)) ||
+        !price ||
+        (stocks.length === 0 && !quantity)
+      ) {
+        console.log("formData", formData);
+        console.log("Please enter all the details");
+        return;
+      }
+
       const newStockItem = {
         size,
         color,
@@ -46,29 +50,33 @@ function CreateProductComp() {
         discount,
       };
 
-      const updatedStock = [...formData.stocks, newStockItem];
-
-      setFormData({ ...formData, stocks: updatedStock });
       setFormData({
         ...formData,
+        stocks: [...formData.stocks, newStockItem],
         size: "",
         color: "",
         quantity: "",
         price: "",
         discount: "",
       });
+      console.log("formData", formData);
     } catch (error) {
       console.error("Error in handleAddStock:", error);
     }
   };
 
   const handleImageChange = (e) => {
-    setFormData({ ...formData, images: e.target.files[0] });
+    try {
+      setFormData({ ...formData, images: e.target.files[0] });
+    } catch (error) {
+      console.error("Error in handleImageChange:", error);
+      
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    try {
     const form = new FormData();
     form.append("name", formData.name);
     form.append("description", formData.description);
@@ -81,18 +89,34 @@ function CreateProductComp() {
     form.append("size", formData.size);
     form.append("stocks", JSON.stringify(formData.stocks));
 
-    try {
+    console.log("formData", formData);
+
       const response = await axios.post(
         "http://localhost:3000/product/create",
         form,
         {
+          method: "POST",
           headers: {
-            "Content-Type": "multipart/form-data", // Important for file uploads
+            "Content-Type": "multipart/form-data",
+            Authorization:
+              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTEzY2FmZmMyNDU0ZTA5MTIwZGUzY2YiLCJpYXQiOjE2OTU4NzczOTIsImV4cCI6MTY5NTkwNjE5Mn0.jwupn-qenG9OXcHUNpnJzaGjlMZx8icnkkcR8I1OBD0", 
           },
         }
       );
 
-      console.log(response.data, "res");
+      console.log("res", response.data);
+      setFormData({
+        name: "",
+        description: "",
+        category: "",
+        price: "",
+        discount: "",
+        size: "",
+        images: null,
+        color: "",
+        quantity: "",
+        stocks: [],
+      });
     } catch (error) {
       console.error("Error creating product and stock:", error);
     }
@@ -154,7 +178,7 @@ function CreateProductComp() {
                     >
                       <option value="Men">Men</option>
                       <option value="Women">Women</option>
-                      <option value="House-appliances">House appliances</option>
+                      <option value="House appliances">House appliances</option>
                     </select>
                   </div>
                 </div>

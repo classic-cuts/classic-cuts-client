@@ -1,15 +1,42 @@
 import { useState } from "react";
-import { Grid, Button, InputLabel, FormControl, OutlinedInput } from "@mui/material";
+import axios from "axios";
+import {
+  Grid,
+  Button,
+  InputLabel,
+  FormControl,
+  OutlinedInput,
+} from "@mui/material";
 
-const SignUp = ({toggleForm}) => {
+const SignUp = ({ toggleForm }) => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     // Logic to handle form submit
+    try {
+      const response = await axios.post(
+        "http://localhost:3000/user/signup",
+        { firstName, lastName, email, password },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      if (response.status === 201) {
+        alert("User created successfully");
+        const data = await response.data();
+        console.log("res", data);
+      } else {
+        alert("Error");
+      }
+    } catch (error) {
+      console.error("Registration error:", error);
+    }
   };
 
   return (
@@ -94,11 +121,7 @@ const SignUp = ({toggleForm}) => {
       <div className="flex justify-center flex-col items-center">
         <div className="py-3 flex items-center">
           <p>Already have an account?</p>
-          <Button
-            className="ml-5"
-            size="small"
-            onClick={toggleForm}
-          >
+          <Button className="ml-5" size="small" onClick={toggleForm}>
             Login
           </Button>
         </div>

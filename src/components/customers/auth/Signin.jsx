@@ -1,14 +1,49 @@
 /* eslint-disable react/no-unescaped-entities */
 import { useState } from "react";
-import { Grid, Button, InputLabel, FormControl, OutlinedInput } from "@mui/material";
+import {
+  Grid,
+  Button,
+  InputLabel,
+  FormControl,
+  OutlinedInput,
+} from "@mui/material";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-const SignIn = ({toggleForm}) => {
+const SignIn = ({ toggleForm }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     // Logic to handle form submit
+    const loginData = {
+      email,
+      password,
+    };
+    try {
+      const response = await fetch("http://localhost:3000/user/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(loginData),
+      });
+      const responseData = await response.json();
+
+      if (response.ok) {
+        const token = responseData.token;
+        localStorage.setItem("token", token);
+        toast.success("Logged in successfully")
+        toast
+        setEmail("");
+        setPassword("");
+      }else {
+        toast.error(responseData.message);
+      }
+    } catch (error) {
+      toast.error(responseData.message);
+    }
   };
 
   return (
@@ -68,6 +103,7 @@ const SignIn = ({toggleForm}) => {
           </Button>
         </div>
       </div>
+      <ToastContainer/>
     </div>
   );
 };

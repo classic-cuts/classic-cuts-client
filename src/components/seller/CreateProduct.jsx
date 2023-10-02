@@ -1,127 +1,87 @@
 import { useState } from "react";
-
 import { PhotoIcon } from "@heroicons/react/24/solid";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function CreateProductComp() {
   const [formData, setFormData] = useState({
     name: "",
     description: "",
     category: "",
-    price: "",
-    discount: "",
-    size: "",
-    images: null,
-    color: "",
-    quantity: "",
+    file: null,
     stocks: [],
   });
 
   const handleChange = (e) => {
-    try {
-      const { name, value } = e.target;
-      setFormData({ ...formData, [name]: value });
-    } catch (error) {
-      console.error("Error in handleChange:", error);
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file && file.size > 1024 * 1024 * 10) {
+      toast.error("File size exceeds 10MB limit.");
+    } else {
+      setFormData({ ...formData, file });
     }
   };
 
   const handleAddStock = () => {
-    try {
-      const { size, color, quantity, price, discount, stocks } = formData;
-      if (
-        (stocks.length === 0 && !size) ||
-        (stocks.length === 0 && !color) ||
-        (stocks.length === 0 && !Number(price)) ||
-        !price ||
-        (stocks.length === 0 && !quantity)
-      ) {
-        // console.log("formData", formData);
-        console.log("Please enter all the details");
-        return;
-      }
-
-      const newStockItem = {
-        size,
-        color,
-        quantity,
-        price,
-        discount,
-      };
-      stocks.push(newStockItem);
+    const { price, color, size, discount, quantity } = formData;
+    if (price && color && size && quantity) {
+      const newStock = { price, color, size, discount, quantity };
       setFormData({
         ...formData,
-        // stocks: [...formData.stocks, newStockItem],
-        size: "",
-        color: "",
-        quantity: "",
+        stocks: [...formData.stocks, newStock],
         price: "",
+        color: "",
+        size: "",
         discount: "",
+        quantity: "",
       });
-      console.log("formData", formData);
-    } catch (error) {
-      console.error("Error in handleAddStock:", error);
-    }
-  };
-
-  const handleImageChange = (e) => {
-    try {
-      setFormData({ ...formData, images: [e.target.files] });
-      console.log(formData);
-    } catch (error) {
-      console.error("Error in handleImageChange:", error);
     }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     try {
+      if (!localStorage.getItem("token")) {
+        return toast("Please login to continue");
+      }
+
       const form = new FormData();
       form.append("name", formData.name);
       form.append("description", formData.description);
       form.append("category", formData.category);
-      // form.append("images", formData.images);
-      if (formData.images) {
-        formData.images.forEach((image, index) => {
-          form.append(`images-${index}`, image);
+      form.append("file", formData.file);
+
+      // Convert stocks array to JSON string and append to the form data
+      form.append("stocks", JSON.stringify(formData.stocks));
+      const response = await fetch("http://localhost:3000/product/create", {
+        method: "POST",
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+        body: form,
+      });
+      const responseData = await response.json();
+
+      if (!response.ok) {
+        toast.error(responseData.message);
+      } else {
+        toast.success(responseData.message);
+        // Reset the form data
+        setFormData({
+          name: "",
+          description: "",
+          category: "",
+          file: null,
+          stocks: [],
         });
       }
-      form.append("stocks", JSON.stringify(formData.stocks));
-
-      console.log("formData", formData);
-
-      const response = await fetch(
-        "http://localhost:3000/product/create",
-
-        {
-          method: "POST",
-          headers: {
-            Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTEzY2FmZmMyNDU0ZTA5MTIwZGUzY2YiLCJpYXQiOjE2OTU5NzMxMDUsImV4cCI6MTY5NjAwMTkwNX0.UqHr3Vr7Duxvdp5zcIhBSl1rs6gYIMW2l2KWOvmGkXg",
-          },
-          body: form,
-        }
-      );
-      if (response.status !== 200) {
-        throw new Error(`Failed to create product: ${response.statusText}`);
-      }
-      const data = await response.json();
-      console.log("Public ID:", data.publicId);
-      console.log("Secret URL:", data.secretUrl);
-      console.log("res", data);
-      setFormData({
-        name: "",
-        description: "",
-        category: "",
-        price: "",
-        discount: "",
-        size: "",
-        images: null,
-        color: "",
-        quantity: "",
-        stocks: [],
-      });
     } catch (error) {
-      console.error("Error creating product and stock:", error);
+      console.error("Error creating product:", error);
     }
   };
 
@@ -177,12 +137,12 @@ function CreateProductComp() {
                       name="category"
                       onChange={handleChange}
                       value={formData.category}
-                      // defaultValue="Men"
                       className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
                     >
-                      <option value="Men">Men</option>
-                      <option value="Women">Women</option>
-                      <option value="House appliances">House appliances</option>
+                      <option value="">Choose a category</option>
+                      <option value="MEN">MEN</option>
+                      <option value="WOMEN">WOMEN</option>
+                      <option value="HOUSEHOLD">HOUSEHOLD</option>
                     </select>
                   </div>
                 </div>
@@ -201,6 +161,9 @@ function CreateProductComp() {
                         defaultValue="XS"
                         className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
                       >
+                        <option value="" selected>
+                          Choose size
+                        </option>
                         <option value="XS">XS</option>
                         <option value="S">S</option>
                         <option value="M">M</option>
@@ -218,11 +181,17 @@ function CreateProductComp() {
                         value={formData.color}
                         className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
                       >
+                        <option value="" selected>
+                          Choose color
+                        </option>
                         <option value="Red">Red</option>
                         <option value="Black">Black</option>
                         <option value="Blue">Blue</option>
                         <option value="White">White</option>
                         <option value="Orange">Orange</option>
+                        <option value="Green">Green</option>
+                        <option value="Dark Green">Dark Green</option>
+                        <option value="Light Blue">Light Blue</option>
                       </select>
                     </div>
                   </div>
@@ -383,7 +352,7 @@ function CreateProductComp() {
                             id="images"
                             name="images"
                             type="file"
-                            onChange={handleImageChange}
+                            onChange={handleFileChange}
                             className="sr-only"
                           />
                         </label>
@@ -392,6 +361,11 @@ function CreateProductComp() {
                       <p className="text-xs leading-5 text-gray-600">
                         PNG, JPG, JPEG up to 10MB
                       </p>
+                      {formData.file ? (
+                        <p className="pl-1">{formData.file.name}</p>
+                      ) : (
+                        <p className="pl-1">No file selected</p>
+                      )}
                     </div>
                   </div>
                   <div className="text-center">
@@ -427,6 +401,7 @@ function CreateProductComp() {
           </div>
         </form>
       </div>
+      <ToastContainer />
     </div>
   );
 }

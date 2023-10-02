@@ -2,8 +2,8 @@
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 
-import SignIn from "./SignIn";
-import SignUp from "./SignUp";
+import SignIn from "./Signin";
+import SignUp from "./Signup";
 import { useState } from "react";
 
 const AuthForm = ({ handleClose, open }) => {

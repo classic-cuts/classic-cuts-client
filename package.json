@@ -2,6 +2,7 @@
   "name": "classic-cuts",
   "private": true,
   "version": "0.0.0",
+  "proxy": "http://localhost:3000",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -20,6 +21,7 @@
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "@tailwindcss/forms": "^0.5.6",
     "axios": "^1.5.0",
+    "jwt-decode": "^3.1.2",
     "react": "^18.2.0",
     "react-alice-carousel": "^2.7.1",
     "react-dom": "^18.2.0",

@@ -1,5 +1,4 @@
 import { useState } from "react";
-import axios from "axios";
 import {
   Grid,
   Button,
@@ -7,6 +6,8 @@ import {
   FormControl,
   OutlinedInput,
 } from "@mui/material";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const SignUp = ({ toggleForm }) => {
   const [firstName, setFirstName] = useState("");
@@ -17,25 +18,36 @@ const SignUp = ({ toggleForm }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     // Logic to handle form submit
+    const userData = {
+      firstName,
+      lastName,
+      email,
+      password,
+    };
+
     try {
-      const response = await axios.post(
-        "http://localhost:3000/user/signup",
-        { firstName, lastName, email, password },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-      if (response.status === 201) {
-        alert("User created successfully");
-        const data = await response.data();
-        console.log("res", data);
+      // Make a POST request to register the user using the fetch API
+      const response = await fetch("http://localhost:3000/user/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(userData),
+      });
+      const responseData = await response.json();
+      if (response.ok) {
+        // User registered successfully
+        // console.log("User registered successfully:", responseData);
+        toast.success(responseData.message);
+        setFirstName("");
+        setLastName("");
+        setEmail("");
+        setPassword("");
       } else {
-        alert("Error");
+        toast.error(responseData.message);
       }
     } catch (error) {
-      console.error("Registration error:", error);
+      toast.error(responseData.message);
     }
   };
 
@@ -126,6 +138,7 @@ const SignUp = ({ toggleForm }) => {
           </Button>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 };

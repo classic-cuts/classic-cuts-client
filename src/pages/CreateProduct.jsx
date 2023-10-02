@@ -1,4 +1,4 @@
-import CreateProductComp from '../components/seller/createProduct'
+import CreateProductComp from '../components/seller/CreateProduct'
 
 const CreateProduct = () => {
   return (

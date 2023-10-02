@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, NavLink, useParams } from "react-router-dom";
 
 import { RadioGroup } from "@headlessui/react";
 import { MdSecurity } from "react-icons/Md";
@@ -12,6 +12,7 @@ import { useProductContext } from "../../context/ProductContext/ProductContext";
 import FormatPrice from "../../helpers/FormatPrice";
 // import ProductImages from "./ProductImages";
 import Ratings from "../ratings/ratings";
+import ProductQuantityToggle from "./ProductQuantityToggle";
 
 //TODO:BE api to be updated here. works with another dummy api. however, this api would not work.
 const API = "https://dummyjson.com/products";
@@ -19,6 +20,16 @@ const API = "https://dummyjson.com/products";
 const ProductPage = () => {
   const { getSingleProduct, isSingleLoading, singleProduct } =
     useProductContext();
+
+  const [quantity, setQuantity] = useState(1);
+
+  const handleDecrease = () => {
+    quantity > 1 ? setQuantity(quantity - 1) : setQuantity(1);
+  };
+
+  const handleIncrease = () => {
+    quantity < stock ? setQuantity(quantity + 1) : setQuantity(stock);
+  };
   //temp
   const product = {
     name: "Basic Tee 6-Pack",
@@ -47,9 +58,9 @@ const ProductPage = () => {
       },
     ],
     colors: [
-      { name: "White", class: "bg-white", selectedClass: "ring-gray-400" },
-      { name: "Gray", class: "bg-gray-200", selectedClass: "ring-gray-400" },
-      { name: "Black", class: "bg-gray-900", selectedClass: "ring-gray-900" },
+      { name: "White", class: "bg-white", selectedClass: "ring-gray-400, inStock: true" },
+      { name: "Gray", class: "bg-gray-200", selectedClass: "ring-gray-400, inStock: true" },
+      { name: "Black", class: "bg-gray-900", selectedClass: "ring-gray-900, inStock: true" },
     ],
     sizes: [
       { name: "XXS", inStock: false },
@@ -89,7 +100,7 @@ const ProductPage = () => {
     price,
     description,
     category,
-    stock,
+    stock = 10,
     stars,
     image,
     brand,
@@ -234,6 +245,7 @@ const ProductPage = () => {
                       {product.colors.map((color) => (
                         <RadioGroup.Option
                           key={color.name}
+                          disabled={!color.inStock}
                           value={color}
                           className={({ active, checked }) =>
                             classNames(
@@ -343,20 +355,32 @@ const ProductPage = () => {
                     Brand: <span className="font-normal">{brand}</span>
                   </h3>
                   <h3
-                    className={`text-sm font-medium ${
+                    className={`text-sm font-medium mb-4 ${
                       stock > 0 ? "text-green-600" : "text-red-600"
                     }`}
                   >
                     {stock > 0 ? "Available" : "Out of Stock"}
                   </h3>
-                </div>
 
-                <button
-                  type="submit"
-                  className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                >
-                  Add to bag
-                </button>
+                  <h3 className="text-sm font-medium mb-3">
+                    Quantity: <span className="font-normal">{brand}</span>
+                  </h3>
+                  <div className="text-sm font-medium mb-4">
+                    <ProductQuantityToggle
+                      quantity={quantity}
+                      handleDecrease={handleDecrease}
+                      handleIncrease={handleIncrease}
+                    />
+                  </div>
+                </div>
+                <NavLink to="/cart">
+                  <button 
+                    type="submit"
+                    className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                  >
+                    Add to bag
+                  </button>
+                </NavLink>
               </form>
             </div>
 

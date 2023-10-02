@@ -1,7 +1,5 @@
 import { useState } from "react";
 
-import axios from "axios";
-
 import { PhotoIcon } from "@heroicons/react/24/solid";
 
 function CreateProductComp() {
@@ -37,7 +35,7 @@ function CreateProductComp() {
         !price ||
         (stocks.length === 0 && !quantity)
       ) {
-        console.log("formData", formData);
+        // console.log("formData", formData);
         console.log("Please enter all the details");
         return;
       }
@@ -49,10 +47,10 @@ function CreateProductComp() {
         price,
         discount,
       };
-
+      stocks.push(newStockItem);
       setFormData({
         ...formData,
-        stocks: [...formData.stocks, newStockItem],
+        // stocks: [...formData.stocks, newStockItem],
         size: "",
         color: "",
         quantity: "",
@@ -67,44 +65,49 @@ function CreateProductComp() {
 
   const handleImageChange = (e) => {
     try {
-      setFormData({ ...formData, images: e.target.files[0] });
+      setFormData({ ...formData, images: [e.target.files] });
+      console.log(formData);
     } catch (error) {
       console.error("Error in handleImageChange:", error);
-      
     }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-    const form = new FormData();
-    form.append("name", formData.name);
-    form.append("description", formData.description);
-    form.append("category", formData.category);
-    form.append("color", formData.color);
-    form.append("discount", formData.discount);
-    form.append("price", formData.price);
-    form.append("imges", formData.images);
-    form.append("quantity", formData.quantity);
-    form.append("size", formData.size);
-    form.append("stocks", JSON.stringify(formData.stocks));
+      const form = new FormData();
+      form.append("name", formData.name);
+      form.append("description", formData.description);
+      form.append("category", formData.category);
+      // form.append("images", formData.images);
+      if (formData.images) {
+        formData.images.forEach((image, index) => {
+          form.append(`images-${index}`, image);
+        });
+      }
+      form.append("stocks", JSON.stringify(formData.stocks));
 
-    console.log("formData", formData);
+      console.log("formData", formData);
 
-      const response = await axios.post(
+      const response = await fetch(
         "http://localhost:3000/product/create",
-        form,
+
         {
           method: "POST",
           headers: {
-            "Content-Type": "multipart/form-data",
             Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTEzY2FmZmMyNDU0ZTA5MTIwZGUzY2YiLCJpYXQiOjE2OTU4NzczOTIsImV4cCI6MTY5NTkwNjE5Mn0.jwupn-qenG9OXcHUNpnJzaGjlMZx8icnkkcR8I1OBD0", 
+              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTEzY2FmZmMyNDU0ZTA5MTIwZGUzY2YiLCJpYXQiOjE2OTU5NzMxMDUsImV4cCI6MTY5NjAwMTkwNX0.UqHr3Vr7Duxvdp5zcIhBSl1rs6gYIMW2l2KWOvmGkXg",
           },
+          body: form,
         }
       );
-
-      console.log("res", response.data);
+      if (response.status !== 200) {
+        throw new Error(`Failed to create product: ${response.statusText}`);
+      }
+      const data = await response.json();
+      console.log("Public ID:", data.publicId);
+      console.log("Secret URL:", data.secretUrl);
+      console.log("res", data);
       setFormData({
         name: "",
         description: "",
@@ -174,6 +177,7 @@ function CreateProductComp() {
                       name="category"
                       onChange={handleChange}
                       value={formData.category}
+                      // defaultValue="Men"
                       className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
                     >
                       <option value="Men">Men</option>
@@ -194,6 +198,7 @@ function CreateProductComp() {
                         name="size"
                         onChange={handleChange}
                         value={formData.size}
+                        defaultValue="XS"
                         className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
                       >
                         <option value="XS">XS</option>
@@ -209,6 +214,7 @@ function CreateProductComp() {
                         id="color"
                         name="color"
                         onChange={handleChange}
+                        defaultValue="Red"
                         value={formData.color}
                         className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
                       >
@@ -368,15 +374,15 @@ function CreateProductComp() {
                       />
                       <div className="mt-4 flex text-sm leading-6 text-gray-600">
                         <label
-                          htmlFor="file-upload"
+                          htmlFor="images"
                           className="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"
                         >
                           <span>Upload a file</span>
                           <input
-                            accept=".png, .jpg, .jpeg"
+                            accept="image/*"
+                            id="images"
                             name="images"
                             type="file"
-                            multiple
                             onChange={handleImageChange}
                             className="sr-only"
                           />
@@ -389,12 +395,15 @@ function CreateProductComp() {
                     </div>
                   </div>
                   <div className="text-center">
-                    {formData.images}
+                    {/* {formData.images} */}
                     {/* <ul>
-                    {selectedImages[0].map((image) => (
-                      <li key={image.name}>{image.name}</li>
-                    ))}
-                  </ul> */}
+                      {formData.images &&
+                        formData.images.map((image) => (
+                          <li key={image.name}>
+                            <img src={URL.createObjectURL(image)} alt={image.name} />
+                          </li>
+                        ))}
+                    </ul> */}
                   </div>
                 </div>
               </div>

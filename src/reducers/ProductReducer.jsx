@@ -10,15 +10,19 @@ const ProductReducer = (state, action) => {
         isLoading: true,
       };
 
+    // case "SET_API_DATA":
+    //   const featureData = action.payload.filter((curElem) => {
+    //     return curElem.featured === true;
+    //   });
     case "SET_API_DATA":
-      const featureData = action.payload.filter((curElem) => {
-        return curElem.featured === true;
-      });
+      const productsData = action.payload;
+      console.log("productsData",productsData);
       return {
         ...state,
         isLoading: false,
         products: action.payload,
-        featureProducts: featureData,
+        // featureProducts: featureData,
+        productsData: productsData,
       };
 
     case "API_ERROR":

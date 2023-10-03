@@ -8,13 +8,14 @@ import reducer from "../../reducers/ProductReducer"
 
 const AppContext = createContext();
 
-const API = "https://mocki.io/v1/6289ac77-a703-46e5-97b2-90e188b1cff3"
+const API = "http://localhost:3000/product/get-all"
 
 const initialState = {
   isLoading: false,
   isError: false,
   products: [],
   featureProducts: [],
+  productsData:[],
   isSingleLoading: false,
   singleProduct:{},
 }
@@ -28,6 +29,7 @@ const AppProvider = ({ children }) => {
       try {
         const res = await axios.get(url)
         const products = await res.data;
+        console.log("products", products)
         dispatch({type: "SET_API_DATA", payload: products});
       } catch (error) {
         dispatch({type:"API_ERROR"});

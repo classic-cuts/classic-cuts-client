@@ -7,8 +7,9 @@ const FeatureProducts = () => {
     // if(isLoading){
     //     return<div>...is loading</div>
     // }
-    const {productsData} = useProductContext();
+    const {products} = useProductContext();
     // const {featureProducts} = useProductContext();
+    console.log("products", products)
     
   return (
     <div className="bg-white">
@@ -18,33 +19,34 @@ const FeatureProducts = () => {
         </h2>
 
         <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
-          {productsData.map((curElem) => {
+          {products.map((curElem) => {
             return <Product key={curElem.id} {...curElem}/>;
             })}
           {/* {featureProducts.map((curElem) => {
             return <Product key={curElem.id} {...curElem}/>;
             })} */}
           
-            {/* <div key={curElem.id} className="group relative">
+          {/* {products.map((product) => (
+            <div key={product.id} className="group relative">
               <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
                 <img
-                  src={curElem.imageSrc}
-                  alt={curElem.imageAlt}
+                  src={product.imageUrls.secureUrl}
+                  alt={product.imageAlt}
                   className="h-full w-full object-cover object-center lg:h-full lg:w-full"
                 />
               </div>
               <div className="mt-4 flex justify-between">
                 <div>
                   <h3 className="text-sm text-gray-700">
-                    <a href={curElem.href}>
+                    <a href={product.href}>
                       <span aria-hidden="true" className="absolute inset-0" />
-                      {curElem.name}
+                      {product.name}
                     </a>
                   </h3>
-                  <p className="mt-1 text-sm text-gray-500">{curElem.color}</p>
+                  <p className="mt-1 text-sm text-gray-500">{product.color}</p>
                 </div>
                 <p className="text-sm font-medium text-gray-900">
-                  {curElem.price}
+                  {product.price}
                 </p>
               </div>
             </div>

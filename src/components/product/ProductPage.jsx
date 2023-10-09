@@ -14,8 +14,8 @@ import FormatPrice from "../../helpers/FormatPrice";
 import Ratings from "../ratings/ratings";
 import ProductQuantityToggle from "./ProductQuantityToggle";
 
-//TODO:BE api to be updated here. works with another dummy api. however, this api would not work.
-const API = "https://dummyjson.com/products";
+// const API = "https://dummyjson.com/products";
+const API = "http://localhost:3000/product/get";
 
 const ProductPage = () => {
   const { getSingleProduct, isSingleLoading, singleProduct } =
@@ -90,10 +90,9 @@ const ProductPage = () => {
   }
   //temp
 
-  const { id } = useParams();
+  const { pid, sid } = useParams();
 
   const {
-    id: alias,
     name,
     sizes,
     colors,
@@ -113,8 +112,9 @@ const ProductPage = () => {
   const [selectedSize, setSelectedSize] = useState(product.sizes[2]);
 
   useEffect(() => {
-    getSingleProduct(`${API}?id=${id}`);
+    getSingleProduct(`${API}?pid={pid}?sid={sid}`);
   }, []);
+console.log("getSingleProduct", singleProduct)
 
   // return <div>ProductPage {name}</div>;
   return (

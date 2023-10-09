@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 
@@ -6,9 +7,9 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import FormatPrice from "../../helpers/FormatPrice";
 
 const Product = (curElem) => {
-  // eslint-disable-next-line no-unused-vars
-  const { id, name, imageSrc, imageAlt, price, category, color } =
-    curElem;
+  // console.log("curElem", curElem)
+  const { _id, name, imageUrls, imageAlt, stockData, category } = curElem;
+  // console.log(stockData.stocks)
 
   const [isHovered, setIsHovered] = useState(false);
 
@@ -23,14 +24,14 @@ const Product = (curElem) => {
   return (
     <div className="group">
       <NavLink
-        to={`/product/${id}`}
+        to={`/product/${_id}`}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
         <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
           <img
-            src={imageSrc}
-            alt={imageAlt}
+            src={imageUrls.secureUrl}
+            alt={name}
             className="h-full w-full object-cover object-center lg:h-full lg:w-full"
           />
           {isHovered && (
@@ -42,12 +43,16 @@ const Product = (curElem) => {
         <div className="mt-4 flex justify-between">
           <div>
             <h3 className="text-sm text-gray-700">
-                <span aria-hidden="true" className="absolute inset-0" />
-                {name}
+              <span aria-hidden="true" className="absolute inset-0" />
+              {name}
             </h3>
-            <p className="mt-1 text-sm text-gray-500">{color}</p>
+            <p className="mt-1 text-sm text-gray-500">
+              {stockData?.stocks?.[0]?.color}
+            </p>
           </div>
-          <p className="text-sm font-medium text-gray-900">{<FormatPrice price={price}/>}</p>
+          <p className="text-sm font-medium text-gray-900">
+            {<FormatPrice price={stockData?.stocks?.[0]?.price} />}
+          </p>
         </div>
       </NavLink>
     </div>

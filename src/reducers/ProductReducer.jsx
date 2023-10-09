@@ -1,4 +1,3 @@
-/* eslint-disable no-fallthrough */
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-case-declarations */
 /* eslint-disable no-undef */
@@ -9,20 +8,19 @@ const ProductReducer = (state, action) => {
         ...state,
         isLoading: true,
       };
-
-    // case "SET_API_DATA":
-    //   const featureData = action.payload.filter((curElem) => {
-    //     return curElem.featured === true;
-    //   });
+      
     case "SET_API_DATA":
-      const productsData = action.payload;
-      console.log("productsData",productsData);
+      const product  = action.payload;
+      console.log("products",product);
+    
+      const featureData = product.filter((curElem) => {
+        return curElem.featured === true;
+      });
       return {
         ...state,
         isLoading: false,
         products: action.payload,
-        // featureProducts: featureData,
-        productsData: productsData,
+        featureProducts: featureData,
       };
 
     case "API_ERROR":
